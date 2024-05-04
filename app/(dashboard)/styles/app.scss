@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 @import "partials/status";
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 body {
-  font-family: Inter, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
+.container {
+  @apply max-w-[1542px] mx-auto;
+}
 .sidebar {
   @apply w-0 overflow-y-scroll md:w-[280px] h-screen fixed left-0 z-10 top-0 bg-[#212121] transition-all duration-300;
   scrollbar-width: none;
@@ -141,7 +144,7 @@ body {
 .ant-badge-dot {
   width: 15px !important;
   height: 15px !important;
-  background: #f8991f !important;
+  background: #e13030 !important;
   border: 2px solid white !important;
 }
 .paichart {
@@ -180,25 +183,23 @@ body {
 }
 .selector-arrow {
   .ant-input-prefix svg {
-   color: #f8991f;
+    color: #f8991f;
   }
-   .ant-select-selector {
+  .ant-select-selector {
     border: 1px solid #e4e4e4 !important;
     outline: none !important;
     border-color: #ffffff00;
     outline: none !important;
     box-shadow: none !important;
     :focus {
-      border: none!important;
+      border: none !important;
     }
- }
+  }
 }
 
-.modals .ant-modal-footer{
-  @apply hidden #{!important}
+.modals .ant-modal-footer {
+  @apply hidden #{!important};
 }
-
-
 
 .gender {
   .ant-select-selection-item {
@@ -206,15 +207,13 @@ body {
   }
 }
 
-.upload{
-  .ant-upload-drag{
-    @apply border-none #{!important}
+.upload {
+  .ant-upload-drag {
+    @apply border-none #{!important};
   }
 }
 
-
-.ant-upload-select, .ant-upload-list-item-container{
- @apply w-full md:w-[130px] h-[172px] md:h-[130px]  #{!important};
+.ant-upload-select,
+.ant-upload-list-item-container {
+  @apply w-full md:w-[130px] h-[172px] md:h-[130px]  #{!important};
 }
-
-

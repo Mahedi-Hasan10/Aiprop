@@ -1,9 +1,10 @@
 "use client";
 import Sidebar from "../components/layout/sidebar";
 import Header from "../components/layout/header";
-import { MdDashboard, MdFolderSpecial } from "react-icons/md";
-import { SiCodechef } from "react-icons/si";
-import { PiComputerTowerFill } from "react-icons/pi";
+import { MdDashboard } from "react-icons/md";
+import { GiAutoRepair } from "react-icons/gi";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { IoHome, IoLogOut, IoSettings } from "react-icons/io5";
 
 const Layout = ({ children }) => {
   return (
@@ -31,17 +32,26 @@ const menu = [
   {
     label: "Tenants",
     href: "/admin/tenants",
-    icons: <PiComputerTowerFill className="text-[32px]" />,
+    icons: <IoHome className="text-[32px]" />,
   },
 
   {
     label: "Repairmen",
     href: "/admin/repairmen",
-    icons: <SiCodechef className="text-[32px]" />,
+    icons: <GiAutoRepair className="text-[32px]" />,
   },
   {
     label: "Billing",
     href: "/admin/billing",
-    icons: <MdFolderSpecial className="text-[32px]" />,
+    icons: <FaMoneyCheckDollar className="text-[32px]" />,
+  },
+  {
+    label: "Settings",
+    href: "/admin/settings",
+    icons: <IoSettings className="text-[32px]" />,
+  },
+  {
+    label: "Logout",
+    icons: <IoLogOut className="text-[32px]" />,
   },
 ];
