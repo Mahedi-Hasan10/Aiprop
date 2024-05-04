@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { Bar, BarChart } from "recharts";
 
@@ -54,8 +55,8 @@ const BarChartPage = () => {
   ];
 
   return (
-    <BarChart className="barChart" width={550} height={300} data={barChart}>
-      <Bar dataKey="uv" fill="#8884d8" />
+    <BarChart className="barChart border md:!w-[100%]" width={250} height={200} data={barChart}  >
+      <Bar dataKey="uv" fill="#8884d8"  />
     </BarChart>
   );
 };
