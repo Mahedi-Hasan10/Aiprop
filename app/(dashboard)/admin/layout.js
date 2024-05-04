@@ -45,13 +45,4 @@ const menu = [
     href: "/admin/billing",
     icons: <FaMoneyCheckDollar className="text-[32px]" />,
   },
-  {
-    label: "Settings",
-    href: "/admin/settings",
-    icons: <IoSettings className="text-[32px]" />,
-  },
-  {
-    label: "Logout",
-    icons: <IoLogOut className="text-[32px]" />,
-  },
 ];

@@ -111,12 +111,12 @@ const AdminDashboard = () => {
             />
           </div>
           <div className="mt-4 flex gap-[30px]">
-            <div>
+            {/* <div>
               <PieChartComponent />
             </div>
             <div className="p-[30px]">
               <BarChartPage />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md">

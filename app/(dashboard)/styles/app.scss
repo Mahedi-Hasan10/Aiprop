@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  @apply max-w-[1542px] mx-auto;
+  @apply max-w-[1542px];
 }
 .sidebar {
   @apply w-0 overflow-y-scroll md:w-[280px] h-screen fixed left-0 z-10 top-0 bg-[#212121] transition-all duration-300;
@@ -224,4 +224,16 @@ body {
 .ant-upload-select,
 .ant-upload-list-item-container {
   @apply w-full md:w-[130px] h-[172px] md:h-[130px]  #{!important};
+}
+
+.ant-table-wrapper .ant-table-tbody > tr > td {
+  color: #030303 !important;
+  font-size: 20px !important;
+  font-family: "Roboto" !important;
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
+}
+.ant-table-wrapper .ant-table-thead > tr > td {
+  font-size: 20px;
+  color: #030303 !important;
 }

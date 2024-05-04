@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoLogOut, IoSettings } from "react-icons/io5";
 import { IoNotifications } from "react-icons/io5";
 import { Badge } from "antd";
 import { useState } from "react";
@@ -30,7 +30,7 @@ const Sidebar = ({ menu }) => {
         }}
         className="sidebar-overlay"
       />
-      <aside className="sidebar !z-20 !bg-bgLine hover:text-primary  w-full h-full flex  flex-col justify-">
+      <aside className="sidebar !z-20 !bg-bgLine hover:text-primary  w-full h-full flex  flex-col justify- border-r-[1.5px] border-[#030303] border-opacity-10">
         <div className="title w-full h-[60px] flex  items-center  justify-between md:justify-center px-3 mt-4 md:mt-8 ">
           <div className=" ">
             <div className=" flex items-center gap-2  ">
@@ -45,7 +45,7 @@ const Sidebar = ({ menu }) => {
                 Property
               </h1>
             </div>
-            <div className="border-b mt-[23px] md:block hidden"></div>
+            <div className="border-b-[1.5px] border-[#030303] border-opacity-10 mt-[23px] md:block hidden"></div>
           </div>
           <div className="flex items-center gap-5 md:hidden">
             <Badge dot={show}>
@@ -63,7 +63,7 @@ const Sidebar = ({ menu }) => {
           </div>
         </div>
 
-        <ul className="menu px-[35px] mt-[50px] flex  flex-col gap-[35px]  ">
+        <ul className="menu px-[35px] mt-[50px] flex  flex-col gap-[24px]  ">
           {menu.map((item, index) => (
             <li key={index}>
               <div
@@ -96,6 +96,38 @@ const Sidebar = ({ menu }) => {
               </div>
             </li>
           ))}
+          <li className="mt-4 pt-10 border-t-[1.5px] border-[#030303] border-opacity-10">
+            <div
+              className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
+                pathname === "settings"
+                  ? "bg-primary !text-white !text-opacity-100"
+                  : ""
+              }`}
+            >
+              <IoSettings className="text-[32px]" />
+              <Link href="/admin/settings" className="md:flex hidden">
+                <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
+                  Settings
+                </span>
+              </Link>
+            </div>
+          </li>
+          <li>
+            <div
+              className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
+                pathname === "settings"
+                  ? "bg-primary !text-white !text-opacity-100"
+                  : ""
+              }`}
+            >
+              <IoLogOut className="text-[32px]" />
+              <Link href="/admin/settings" className="md:flex hidden">
+                <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
+                  Logout
+                </span>
+              </Link>
+            </div>
+          </li>
         </ul>
       </aside>
     </>

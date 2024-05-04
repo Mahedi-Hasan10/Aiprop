@@ -11,6 +11,7 @@ import { IoNotifications } from "react-icons/io5";
 import { IoSearchOutline } from "react-icons/io5";
 import Button2 from "../common/button2";
 import { RxCross2 } from "react-icons/rx";
+import { BiSolidDownArrow } from "react-icons/bi";
 
 const Header = ({ title }) => {
   const [show, setShow] = useState(true);
@@ -53,8 +54,8 @@ const Header = ({ title }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   return (
-    <header className="fixed left-0 md:left-[265px] md:px-3 top-0 right-0 md:h-[96px] bg-white shadow transition-all duration-300 z-10 ">
-      <div className="container flex justify-between items-center h-full md:p-4 px-3 py-4 flex-row-reverse md:flex-row gap-2 ">
+    <header className="fixed left-0 md:left-[265px] md:px-3 top-0 right-0 md:h-[96px] bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
+      <div className="container flex justify-between items-center h-full md:py-[30px] px-[15px] py-4 flex-row-reverse md:flex-row gap-2 ">
         <h2 className="capitalize xl:text-[44px] lg:text-2xl md:text-xl font-medium hidden md:block  ">
           {extractedPath === "home"
             ? " Welcome, John Doe!"
@@ -79,9 +80,11 @@ const Header = ({ title }) => {
         </div>
         <div className="flex items-center">
           <div className="md:flex items-center lg:gap-[35px] gap-5 hidden  ">
-            <Badge dot={show}>
-              <IoNotifications className="text-[#030303] text-2xl" />
-            </Badge>
+            <div className="flex items-center justify-center h-12 w-12 rounded-[5px] bg-[#F8F8F9]">
+              <Badge dot={show}>
+                <IoNotifications className="text-[#030303] text-2xl" />
+              </Badge>
+            </div>
             <Dropdown
               menu={{
                 items,
@@ -89,7 +92,7 @@ const Header = ({ title }) => {
             >
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
-                  <div className="flex lg:gap-3 gap-2 items-center cursor-pointer">
+                  <div className="flex lg:gap-5 gap-2 items-center cursor-pointer">
                     <Image
                       src="/profile.png"
                       width={500}
@@ -97,13 +100,16 @@ const Header = ({ title }) => {
                       alt="profile"
                       className="lg:w-[56px] lg:h-[56px] w-[40px] h-[40px] rounded-[5px]"
                     />
-                    <div>
-                      <h1 className="lg:text-2xl text-base font-medium">
-                        John Doe.
-                      </h1>
-                      <h3 className="lg:text-base text-xs text-textGray">
-                        example@gmail.com
-                      </h3>
+                    <div className="flex gap-4 items-center">
+                      <div>
+                        <h1 className="lg:text-2xl text-base font-medium">
+                          John Doe.
+                        </h1>
+                        <h3 className="lg:text-base text-xs text-textGray">
+                          example@gmail.com
+                        </h3>
+                      </div>
+                      <BiSolidDownArrow />
                     </div>
                   </div>
                 </Space>

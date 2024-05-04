@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
-      jakarta: ["Plus Jakarta Sans", "sans-serif"]
+      jakarta: ["Plus Jakarta Sans", "sans-serif"],
     },
     extend: {
       colors: {
-        primary: "#F8991F",
+        primary: "#7655FA",
         secondary: "#008748",
         bgLine: "#f1eeff",
         heading: "#0F0F0F",
