@@ -197,10 +197,18 @@ body {
   }
 }
 
-.modals .ant-modal-footer {
+.ant-modal-footer {
   @apply hidden #{!important};
 }
-
+.ant-modal-close {
+  @apply hidden #{!important};
+}
+.ant-modal-close-icon {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  @apply hidden #{!important};
+}
 .gender {
   .ant-select-selection-item {
     color: #ef4444 !important;

@@ -5,10 +5,10 @@ import { IoClose } from "react-icons/io5";
 import { IoNotifications } from "react-icons/io5";
 import { Badge } from "antd";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 const Sidebar = ({ menu }) => {
   const [show] = useState(true);
-  const router = useRouter();
+  const pathname = usePathname();
 
   // const handleLogout = async () => {
   //   try {
@@ -66,7 +66,13 @@ const Sidebar = ({ menu }) => {
         <ul className="menu px-[35px] mt-[50px] flex  flex-col gap-[35px]  ">
           {menu.map((item, index) => (
             <li key={index}>
-              <div className="flex items-center gap-5 text-[#030303] text-opacity-60 hover:text-primary duration-500">
+              <div
+                className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
+                  pathname === item.href
+                    ? "bg-primary !text-white !text-opacity-100"
+                    : ""
+                }`}
+              >
                 {item.icons}
                 <Link href={item.href || "#!"} className="md:flex hidden">
                   <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
