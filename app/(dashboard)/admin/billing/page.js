@@ -3,7 +3,7 @@ import { LiaDollarSignSolid } from "react-icons/lia";
 import BillingCard from "../../components/common/billingCard";
 const Billings = () => {
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-[30px] container">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 xl:gap-[30px] md:gap-3 container">
       <BillingCard
         plans={
           <h2 className="text-[84px] font-medium flex items-end group-hover:text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
@@ -34,7 +34,7 @@ const Billings = () => {
       />
       <BillingCard
         plans={
-          <h2 className="text-[74px] font-medium flex items-end group-hover:text-white duration-500   mt-[110px] px-[44px] ">
+          <h2 className="text-[74px] font-medium flex items-end group-hover:text-white duration-500 border ms-[44px] mt-[110px]  ">
             {" "}
             Discus Price{" "}
           </h2>
