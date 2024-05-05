@@ -12,7 +12,7 @@ body {
   @apply max-w-[1542px];
 }
 .sidebar {
-  @apply w-0 overflow-y-scroll md:w-[280px] h-screen fixed left-0 z-10 top-0 bg-[#212121] transition-all duration-300;
+  @apply w-0 overflow-y-scroll md:w-[308px] h-screen fixed left-0 z-10 top-0 bg-[#212121] transition-all duration-300;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -219,13 +219,16 @@ body {
 }
 
 .ant-table-wrapper .ant-table-tbody > tr > td {
-  color: #030303 !important;
-  font-size: 20px !important;
-  font-family: "Roboto" !important;
-  padding-top: 24px !important;
-  padding-bottom: 24px !important;
+  @apply text-[#030303] lg:text-xl text-sm font-roboto  py-[24px]  #{!important}
+  
 }
-.ant-table-wrapper .ant-table-thead > tr > td {
-  font-size: 20px;
-  color: #030303 !important;
+// .ant-table-wrapper .ant-table-thead > tr > td {
+//   font-size: 20px;
+//   color: #030303 !important;
+// }
+.ant-table-thead{
+  @apply lg:text-xl text-base   font-roboto #{!important}
+}
+.ant-table-cell{
+  @apply whitespace-nowrap #{!important}
 }

@@ -5,7 +5,7 @@ const Button2 = ({ is_filled, classname, title, ...props }) => {
     <div>
       <button
         {...props}
-        className={`py-[13px] px-[90px] rounded-md ${
+        className={`py-[13px]  rounded-md w-full ${
           is_filled
             ? "bg-primary text-white hover:bg-#F1EEFF"
             : "bg-[#F1EEFF] text-primary hover:text-white hover:bg-primary"

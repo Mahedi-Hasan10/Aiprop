@@ -3,7 +3,7 @@ module.exports = {
   content: ["./app/**/*.js"],
   theme: {
     fontFamily: {
-      poppins: ["Poppins", "sans-serif"],
+      roboto: ["Roboto"],
       jakarta: ["Plus Jakarta Sans", "sans-serif"],
     },
     extend: {

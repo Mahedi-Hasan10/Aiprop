@@ -102,28 +102,28 @@ const columns2 = [
 const AdminDashboard = () => {
   return (
     <div>
-      <div className="flex justify-between md:flex-row flex-col gap-5 container">
-        <div className="md:w-[80%]">
+      <div className="flex xl:flex-row flex-col xl:gap-[30px] gap-[10px] w-full ">
+        <div className="xl:w-[80%] w-full">
           <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full">
             <h3 className="text-[28px] font-semibold text-[#030303] mb-[30px]">
               Active work orders
             </h3>
             <Table
-              className="overflow-x-scroll"
+              className="overflow-x-scroll "
               dataSource={DataSource}
               columns={columns}
             />
           </div>
-          <div className="mt-4 flex lg:flex-row flex-col gap-[30px] border">
+          {/* <div className="mt-4 flex lg:flex-row flex-col gap-[30px] border">
             <div className="border flex justify-center lg:w-1/2 w-full">
               <PieChartComponent />
             </div>
             <div className=" border flex justify-center md:justify-start lg:w-1/2 w-full">
               <BarChartPage />
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md">
+        <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md border  ">
           <div className="flex gap-3">
             <Image
               src="/images/call.png"

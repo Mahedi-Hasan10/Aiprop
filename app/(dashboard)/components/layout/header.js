@@ -1,5 +1,5 @@
 //
-import { message, Dropdown, Space, Badge, Modal, Form, Input } from "antd";
+import { message, Dropdown, Space, Badge, Modal, Form, Input, Tooltip } from "antd";
 import { FaBars, FaCross } from "react-icons/fa";
 import { FiLock, FiLogOut, FiSettings, FiUser } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,6 +12,10 @@ import { IoSearchOutline } from "react-icons/io5";
 import Button2 from "../common/button2";
 import { RxCross2 } from "react-icons/rx";
 import { BiSolidDownArrow } from "react-icons/bi";
+import { IoSettings } from "react-icons/io5";
+import { TiTick } from "react-icons/ti";
+
+
 
 const Header = ({ title }) => {
   const [show, setShow] = useState(true);
@@ -22,6 +26,7 @@ const Header = ({ title }) => {
   const extractedPath = pathname.slice(adminIndex + 7);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+
 
   const showModal = () => {
     setOpen(!open);
@@ -38,14 +43,16 @@ const Header = ({ title }) => {
 
   const items = [
     {
-      label: "Profile",
-      icon: <FiUser />,
+      label: "Setting",
+      icon: <IoSettings className="text-[36px]" />,
       key: "1",
+      tik: <TiTick className="text-[13px]" />,
       onClick: showProfileModal,
     },
     {
       label: "Logout",
-      icon: <FiLogOut />,
+      icon: <FiLogOut className="text-[36px]" />,
+      tik: <TiTick className="text-[13px] " />,
       key: "4",
       onClick: showModal,
     },
@@ -54,8 +61,8 @@ const Header = ({ title }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   return (
-    <header className="fixed left-0 md:left-[265px] md:px-3 top-0 right-0 md:h-[96px] bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
-      <div className="container flex justify-between items-center h-full md:py-[30px] px-[15px] py-4 flex-row-reverse md:flex-row gap-2 ">
+    <header className="fixed left-0 md:left-[309px] md:px-3 top-0 right-0 md:h-[96px] bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
+      <div className=" flex justify-between items-center h-full md:py-[30px] px-[15px] py-[22px] flex-row-reverse md:flex-row gap-2 ">
         <h2 className="capitalize xl:text-[44px] lg:text-2xl md:text-xl font-medium hidden md:block  ">
           {extractedPath === "home"
             ? " Welcome, John Doe!"
@@ -85,12 +92,16 @@ const Header = ({ title }) => {
                 <IoNotifications className="text-[#030303] text-2xl" />
               </Badge>
             </div>
-            <Dropdown
-              menu={{
-                items,
-              }}
-            >
-              <a onClick={(e) => e.preventDefault()}>
+            <Tooltip placement="bottomRight" color="#ffff" title={<div className="flex flex-col gap-4 py-4 w-[280px]">{items.map(item => (
+
+              <div onClick={item?.onClick} className="flex items-center gap-[74px] w-fit hover:px-[13px] hover:w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                 ">
+                <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal"><span>{item?.icon}</span><span className="text-2xl">{item?.label}</span></h2>
+                <h2 className="group-hover:text-primary text-white duration-500 ">{item?.tik}</h2>
+              </div>
+
+            ))}</div>}>
+              <a >
                 <Space>
                   <div className="flex lg:gap-5 gap-2 items-center cursor-pointer">
                     <Image
@@ -114,7 +125,9 @@ const Header = ({ title }) => {
                   </div>
                 </Space>
               </a>
-            </Dropdown>
+            </Tooltip>
+
+
           </div>
           <div className="md:mt-8 md:hidden flex items-center gap-2 ">
             <Image
@@ -186,12 +199,12 @@ const Header = ({ title }) => {
                 className="px-4 py-4 font-semibold text-sm bg-white poss "
               />
             </Form.Item>
-            <div className="flex gap-[30px] mt-[60px] text-[28px] font-semibold w-full justify-center">
+            <div className="  mt-[60px] text-[28px] font-semibold w-full ">
               <Button2
                 title="Save"
                 is_filled={true}
                 onClick={showProfileModal}
-                classname="w-full"
+                classname="!w-full border h-fit"
               />
             </div>
           </Form>
