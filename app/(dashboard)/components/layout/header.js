@@ -1,5 +1,14 @@
 //
-import { message, Dropdown, Space, Badge, Modal, Form, Input, Tooltip } from "antd";
+import {
+  message,
+  Dropdown,
+  Space,
+  Badge,
+  Modal,
+  Form,
+  Input,
+  Tooltip,
+} from "antd";
 import { FaBars, FaCross } from "react-icons/fa";
 import { FiLock, FiLogOut, FiSettings, FiUser } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
@@ -15,8 +24,6 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import { IoSettings } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
 
-
-
 const Header = ({ title }) => {
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
@@ -26,7 +33,6 @@ const Header = ({ title }) => {
   const extractedPath = pathname.slice(adminIndex + 7);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
-
 
   const showModal = () => {
     setOpen(!open);
@@ -46,13 +52,13 @@ const Header = ({ title }) => {
       label: "Setting",
       icon: <IoSettings className="text-[36px]" />,
       key: "1",
-      tik: <TiTick className="text-[13px]" />,
+      tik: <TiTick className="text-[24px]" />,
       onClick: showProfileModal,
     },
     {
       label: "Logout",
       icon: <FiLogOut className="text-[36px]" />,
-      tik: <TiTick className="text-[13px] " />,
+      tik: <TiTick className="text-[25px]" />,
       key: "4",
       onClick: showModal,
     },
@@ -92,16 +98,30 @@ const Header = ({ title }) => {
                 <IoNotifications className="text-[#030303] text-2xl" />
               </Badge>
             </div>
-            <Tooltip placement="bottomRight" color="#ffff" title={<div className="flex flex-col gap-4 py-4 w-[280px]">{items.map(item => (
-
-              <div onClick={item?.onClick} className="flex items-center gap-[74px] w-fit hover:px-[13px] hover:w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
-                 ">
-                <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal"><span>{item?.icon}</span><span className="text-2xl">{item?.label}</span></h2>
-                <h2 className="group-hover:text-primary text-white duration-500 ">{item?.tik}</h2>
-              </div>
-
-            ))}</div>}>
-              <a >
+            <Tooltip
+              placement="bottomRight"
+              color="#ffff"
+              title={
+                <div className="flex flex-col gap-4 w-[280px]">
+                  {items.map((item) => (
+                    <div
+                      onClick={item?.onClick}
+                      className="flex border-b items-center gap-[74px] px-2 w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                 "
+                    >
+                      <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal">
+                        <span>{item?.icon}</span>
+                        <span className="text-2xl">{item?.label}</span>
+                      </h2>
+                      <h2 className="group-hover:text-primary text-white duration-500">
+                        {item?.tik}
+                      </h2>
+                    </div>
+                  ))}
+                </div>
+              }
+            >
+              <a>
                 <Space>
                   <div className="flex lg:gap-5 gap-2 items-center cursor-pointer">
                     <Image
@@ -126,8 +146,6 @@ const Header = ({ title }) => {
                 </Space>
               </a>
             </Tooltip>
-
-
           </div>
           <div className="md:mt-8 md:hidden flex items-center gap-2 ">
             <Image

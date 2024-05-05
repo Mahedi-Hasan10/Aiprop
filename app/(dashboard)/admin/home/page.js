@@ -1,5 +1,5 @@
 "use client";
-import { Flex, Input, Progress, Rate } from "antd";
+import { Flex, Input, Progress, Rate, Select } from "antd";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
 import Image from "next/image";
@@ -35,29 +35,34 @@ const columns = [
     dataIndex: "issue",
     key: "issue",
   },
+
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
     render: (text) => {
+      let textColor;
       let bgColor;
       switch (text) {
-        case "waiting":
-          bgColor = "#F1EEFF";
-
+        case "Waiting":
+          textColor = "#030303";
+          bgColor = "rgba(157, 157, 157, 0.3)";
           break;
-        case "pending":
+        case "Pending":
+          textColor = "#030303";
           bgColor = "#F7F7B2";
           break;
-        case "contracted":
-          bgColor = "#9D9D9D ";
+        case "Contacted":
+          textColor = "#7655FA";
+          bgColor = "#F1EEFF";
           break;
         default:
+          textColor = "#030303";
           bgColor = "#FFFFFF";
       }
       return (
         <div
-          style={{ backgroundColor: bgColor }}
+          style={{ backgroundColor: bgColor, color: textColor }}
           className="text-center w-full"
         >
           {text}
@@ -123,18 +128,39 @@ const AdminDashboard = () => {
             </div>
           </div> */}
         </div>
-        <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md border  ">
-          <div className="flex gap-3">
-            <Image
-              src="/images/call.png"
-              height={200}
-              width={200}
-              className="h-[44px] w-[44px] object-fill"
-              alt="call"
+        <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md shadow  ">
+          <div className="flex gap-4">
+            <div className="flex gap-3 ">
+              <Image
+                src="/images/call.png"
+                height={200}
+                width={200}
+                className="h-[44px] w-[44px] object-fill"
+                alt="call"
+              />
+              <h3 className="text-[28px] font-semibold text-[#030303] mb-[30px]">
+                Tenant calls
+              </h3>
+            </div>
+            <Select
+              variant="borderless"
+              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] text-xl"
+              defaultValue="monthly"
+              style={{
+                width: 120,
+              }}
+              // onChange={handleChange}
+              options={[
+                {
+                  value: "monthly",
+                  label: "Monthly",
+                },
+                {
+                  value: "annual",
+                  label: "Annual",
+                },
+              ]}
             />
-            <h3 className="text-[28px] font-semibold text-[#030303] mb-[30px]">
-              Tenant calls
-            </h3>
           </div>
           <Table dataSource={DataSource2} columns={columns2} />
         </div>

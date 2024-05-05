@@ -6,7 +6,7 @@ const Billings = () => {
     <div className="grid md:grid-cols-2 xl:grid-cols-3 xl:gap-[30px] md:gap-3 container">
       <BillingCard
         plans={
-          <h2 className="text-[84px] font-medium flex items-end group-hover:text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
+          <h2 className="text-[70px] font-medium flex items-end group-hover:text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
             <sup className="text-3xl text-[#030303]/60 duration-500 group-hover:text-[#FFFFFF]/60  font-semibold">
               <LiaDollarSignSolid size={40} />{" "}
             </sup>{" "}
@@ -20,7 +20,7 @@ const Billings = () => {
       />
       <BillingCard
         plans={
-          <h2 className="text-[84px] font-medium flex items-end group-hover:text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
+          <h2 className="text-[70px] font-medium flex items-end group-hover:text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
             <sup className="text-3xl text-[#030303]/60 duration-500 group-hover:text-[#FFFFFF]/60  font-semibold">
               <LiaDollarSignSolid size={40} />{" "}
             </sup>{" "}
@@ -34,9 +34,9 @@ const Billings = () => {
       />
       <BillingCard
         plans={
-          <h2 className="text-[74px] font-medium flex items-end group-hover:text-white duration-500 ms-[44px] mt-[110px]  ">
+          <h2 className="text-[70px] font-medium flex items-end group-hover:text-white duration-500 ms-[44px] mt-[110px]  ">
             {" "}
-            Customize Price{" "}
+            Custom Price{" "}
           </h2>
         }
         title="Enterprise"

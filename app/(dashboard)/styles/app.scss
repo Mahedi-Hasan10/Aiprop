@@ -148,7 +148,6 @@ body {
   border: 2px solid white !important;
 }
 
-
 .ant-progress-bg {
   background-color: #f8991f !important;
 }
@@ -219,16 +218,18 @@ body {
 }
 
 .ant-table-wrapper .ant-table-tbody > tr > td {
-  @apply text-[#030303] lg:text-xl text-sm font-roboto  py-[24px]  #{!important}
-  
+  @apply text-[#030303] lg:text-xl text-sm font-roboto  py-[24px] border-b border-[#030303] border-opacity-10 #{!important};
 }
 // .ant-table-wrapper .ant-table-thead > tr > td {
 //   font-size: 20px;
 //   color: #030303 !important;
 // }
-.ant-table-thead{
-  @apply lg:text-xl text-base   font-roboto #{!important}
+.ant-table-thead {
+  @apply lg:text-xl text-base   font-roboto #{!important};
 }
-.ant-table-cell{
-  @apply whitespace-nowrap #{!important}
+.ant-table-cell {
+  @apply whitespace-nowrap #{!important};
+}
+.ant-table-thead > tr > th {
+  @apply bg-[#F1EEFF] py-[11px] #{!important};
 }
