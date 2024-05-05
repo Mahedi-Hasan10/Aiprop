@@ -2,7 +2,7 @@ import React from "react";
 import { LiaDollarSignSolid } from "react-icons/lia";
 import { FaArrowRight } from "react-icons/fa6";
 
-const BillingCard = ({ title, plans }) => {
+const BillingCard = ({ title, plans, is_custom }) => {
   return (
     <div className="w-fll h-[802px] border shadow-md rounded-[20px] relative group overflow-hidden hover:bg-[#7655FA] duration-500 ">
       <div className="absolute ">{plans}</div>
@@ -41,9 +41,15 @@ const BillingCard = ({ title, plans }) => {
             </span>
           </div>
         </div>
-        <button className="w-[88%] text-center text-white group-hover:text-[#7655FA] duration-500 group-hover:bg-white  text-[28px] font-semibold bg-[#7655FA] absolute bottom-0 py-[13px] rounded-[5px]">
-          Choose Plan
-        </button>
+        {is_custom ? (
+          <button className="w-[88%] text-center text-white group-hover:text-[#7655FA] duration-500 group-hover:bg-white  text-[28px] font-semibold bg-[#7655FA] absolute bottom-0 py-[13px] rounded-[5px]">
+            Contact Us
+          </button>
+        ) : (
+          <button className="w-[88%] text-center text-white group-hover:text-[#7655FA] duration-500 group-hover:bg-white  text-[28px] font-semibold bg-[#7655FA] absolute bottom-0 py-[13px] rounded-[5px]">
+            Choose Plan
+          </button>
+        )}
       </div>
     </div>
   );

@@ -34,12 +34,13 @@ const Billings = () => {
       />
       <BillingCard
         plans={
-          <h2 className="text-[74px] font-medium flex items-end group-hover:text-white duration-500 border ms-[44px] mt-[110px]  ">
+          <h2 className="text-[74px] font-medium flex items-end group-hover:text-white duration-500 ms-[44px] mt-[110px]  ">
             {" "}
-            Discus Price{" "}
+            Customize Price{" "}
           </h2>
         }
         title="Enterprise"
+        is_custom={true}
       />
     </div>
   );
