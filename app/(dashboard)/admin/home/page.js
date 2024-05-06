@@ -6,14 +6,11 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { Table } from "antd";
 import { DataSource, DataSource2 } from "../../components/data";
-const BarChartPage = dynamic(
-  () => import("../../components/admin/barChartComponent.js"),
-  { ssr: false }
-);
-const PieChartComponent = dynamic(
-  () => import("../../components/admin/pieChartComponent.js"),
-  { ssr: false }
-);
+
+import { Pie, Bar } from 'react-chartjs-2';
+
+
+
 const columns = [
   {
     title: "SL",
@@ -104,6 +101,9 @@ const columns2 = [
   },
 ];
 
+
+
+
 const AdminDashboard = () => {
   return (
     <div>
@@ -119,14 +119,14 @@ const AdminDashboard = () => {
               columns={columns}
             />
           </div>
-          {/* <div className="mt-4 flex lg:flex-row flex-col gap-[30px] border">
+          <div className="mt-4 flex lg:flex-row flex-col gap-[30px] border">
             <div className="border flex justify-center lg:w-1/2 w-full">
-              <PieChartComponent />
+              {/* <Pie className="" /> */}
             </div>
             <div className=" border flex justify-center md:justify-start lg:w-1/2 w-full">
-              <BarChartPage />
+              {/* <Bar className="!h-full" /> */}
             </div>
-          </div> */}
+          </div>
         </div>
         <div className="px-[10px] pb-[21px] pt-[30px] bg-white rounded-md shadow  ">
           <div className="flex gap-4">
@@ -149,7 +149,6 @@ const AdminDashboard = () => {
               style={{
                 width: 120,
               }}
-              // onChange={handleChange}
               options={[
                 {
                   value: "monthly",
