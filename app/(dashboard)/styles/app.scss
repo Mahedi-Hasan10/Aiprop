@@ -233,3 +233,7 @@ body {
 .ant-table-thead > tr > th {
   @apply bg-[#F1EEFF] py-[11px] #{!important};
 }
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
+  display: none !important;
+}

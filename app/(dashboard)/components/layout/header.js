@@ -113,9 +113,13 @@ const Header = ({ title }) => {
                         <span>{item?.icon}</span>
                         <span className="text-2xl">{item?.label}</span>
                       </h2>
-                      <h2 className="group-hover:text-primary text-white duration-500">
-                        {item?.tik}
-                      </h2>
+                      <Image
+                        src="/check.png"
+                        height={20}
+                        width={20}
+                        className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
+                        alt="check"
+                      />
                     </div>
                   ))}
                 </div>

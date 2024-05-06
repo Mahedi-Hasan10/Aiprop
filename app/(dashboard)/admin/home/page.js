@@ -63,7 +63,7 @@ const columns = [
       return (
         <div
           style={{ backgroundColor: bgColor, color: textColor }}
-          className="text-center w-full"
+          className="text-center w-full px-[10px] py-[5px] rounded-[5px]"
         >
           {text}
         </div>
