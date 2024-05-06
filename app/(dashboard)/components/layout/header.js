@@ -167,12 +167,12 @@ const Header = ({ title }) => {
 
       {/* profile modal =========================== */}
       <Modal open={openProfile}>
-        <div className="flex justify-between mb-[20px] text-[26px] font-medium">
-          <h3 className=" ">Edit Profile</h3>
+        <div className="flex justify-between mb-[20px] text-[26px] ">
+          <h3 className=" font-medium text-[#030303]">Edit Profile</h3>
           <RxCross2 className="cursor-pointer" onClick={showProfileModal} />
         </div>
         <div>
-          <div className="flex flex-col gap-10 items-center">
+          <div className="flex flex-col gap-5 mb-5 items-center">
             {/* <Image
               src="/profile.png"
               width={500}
@@ -194,14 +194,14 @@ const Header = ({ title }) => {
               <Input
                 type="text"
                 placeholder="Enter your name"
-                className="px-4 py-2 font-semibold text-sm  border bg-white"
+                className="px-[30px] py-[15px] font-semibold text-sm  border bg-white "
               />
             </Form.Item>
             <Form.Item label="Email" name="email">
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 font-semibold text-sm bg-white"
+                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
               />
             </Form.Item>
 
@@ -209,7 +209,7 @@ const Header = ({ title }) => {
               <Input
                 type="text"
                 placeholder="Enter your age"
-                className="px-4 py-2 font-semibold text-sm  bg-white"
+                className="px-[30px] py-[15px] font-semibold text-sm  bg-white"
               />
             </Form.Item>
 
@@ -220,7 +220,7 @@ const Header = ({ title }) => {
             >
               <Input.Password
                 placeholder="Password"
-                className="px-4 py-2 font-semibold text-sm bg-white "
+                className="px-[30px] py-[15px] font-semibold text-sm bg-white placeholder:text-black "
               />
             </Form.Item>
             <div className="  mt-[20px] text-[28px] font-semibold w-full ">
