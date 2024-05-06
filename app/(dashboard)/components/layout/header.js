@@ -59,7 +59,7 @@ const Header = ({ title }) => {
       label: "Logout",
       icon: <FiLogOut className="text-[36px]" />,
       tik: <TiTick className="text-[25px]" />,
-      key: "4",
+      key: "1",
       onClick: showModal,
     },
   ];
@@ -102,12 +102,12 @@ const Header = ({ title }) => {
               placement="bottomRight"
               color="#ffff"
               title={
-                <div className="flex flex-col gap-4 w-[280px]">
+                <div className="flex flex-col gap-[10px] w-[280px] ">
                   {items.map((item) => (
                     <div
                       onClick={item?.onClick}
-                      className="flex border-b items-center gap-[74px] px-2 w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
-                 "
+                      className={`flex ${item?.label == "Setting" ? "border-b hover:border-[#F1EEFF]" : ""} items-center gap-[74px] px-2 w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                 `}
                     >
                       <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal">
                         <span>{item?.icon}</span>
