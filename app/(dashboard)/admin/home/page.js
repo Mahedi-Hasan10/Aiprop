@@ -109,7 +109,7 @@ const AdminDashboard = () => {
     <div>
       <div className="flex xl:flex-row flex-col xl:gap-[30px] gap-[10px] w-full ">
         <div className="xl:w-[80%] w-full">
-          <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full">
+          <div className="px-[10px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full">
             <h3 className="text-[28px] font-semibold text-[#030303] mb-[30px]">
               Active work orders
             </h3>
@@ -128,7 +128,7 @@ const AdminDashboard = () => {
             </div>
           </div> */}
         </div>
-        <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md shadow  ">
+        <div className="px-[10px] pb-[21px] pt-[30px] bg-white rounded-md shadow  ">
           <div className="flex gap-4">
             <div className="flex gap-3 ">
               <Image
