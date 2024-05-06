@@ -240,7 +240,7 @@ body {
 // .ant-table-thead .ant-table-cell{
 //   @apply bg-[#F1EEFF] py-[11px] border  rounded-lg #{!important};
 // }
-:where(.css-dev-only-do-not-override-mzwlov).ant-table-wrapper
+.ant-table-wrapper
   .ant-table-container
   table
   > thead
@@ -248,7 +248,7 @@ body {
   > *:first-child {
   @apply rounded-s-[6px];
 }
-:where(.css-dev-only-do-not-override-mzwlov).ant-table-wrapper
+.ant-table-wrapper
   .ant-table-container
   table
   > thead
@@ -256,9 +256,7 @@ body {
   > *:last-child {
   @apply rounded-e-[6px];
 }
-:where(.css-dev-only-do-not-override-mzwlov).ant-form-vertical
-  .ant-form-item-label
-  > label {
+.ant-form-vertical .ant-form-item-label > label {
   @apply text-[#030303]/40 text-2xl #{!important};
 }
 .ant-form-item-label {
