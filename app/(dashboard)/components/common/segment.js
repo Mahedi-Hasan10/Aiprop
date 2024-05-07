@@ -16,7 +16,7 @@ const SegmentedButton = () => {
           selectedOption === "Monthly"
             ? "bg-primary text-white"
             : " text-gray-700"
-        } lg:py-[11px] lg:px-4 px-2 py-2 rounded-[5px] focus:outline-none`}
+        } lg:py-[11px] lg:px-4 px-2 py-2 rounded-[5px] focus:outline-none font-bold`}
       >
         Monthly
       </button>
@@ -26,7 +26,7 @@ const SegmentedButton = () => {
           selectedOption === "Annual"
             ? "bg-primary text-white"
             : " text-gray-700"
-        } lg:py-[11px] lg:px-4 px-2 py-2 rounded-[5px] focus:outline-none`}
+        } lg:py-[11px] lg:px-4 px-2 py-2 rounded-[5px] focus:outline-none font-bold`}
       >
         Annual
       </button>
