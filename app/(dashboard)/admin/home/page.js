@@ -8,6 +8,9 @@ import { Table } from "antd";
 import { DataSource, DataSource2 } from "../../components/data";
 
 import { Pie, Bar } from 'react-chartjs-2';
+import BarChart from "../../components/admin/barChart";
+import PieArcLabel from "../../components/admin/pieChart";
+import PieChart from "../../components/admin/pieChart";
 
 
 
@@ -102,8 +105,6 @@ const columns2 = [
 ];
 
 
-
-
 const AdminDashboard = () => {
   return (
     <div>
@@ -119,15 +120,68 @@ const AdminDashboard = () => {
               columns={columns}
             />
           </div>
-          <div className="mt-4 flex lg:flex-row flex-col gap-[30px] border">
-            <div className="border flex justify-center lg:w-1/2 w-full">
-              {/* <Pie className="" /> */}
+
+          <div className="mt-4 flex xl:flex-row flex-col gap-[30px] ">
+            <div className="shadow bg-white px-[30px] pt-[37px] pb-[30px] rounded-[10px] x:w-1/2 w-full  relative ">
+              <div className="flex items-center justify-between w-full ">
+                <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
+                  Repair call stats
+                </h3>
+                <Select
+                  variant="borderless"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] text-xl rounded-[5px]"
+                  defaultValue="monthly"
+                  style={{
+                    width: 120,
+                  }}
+                  options={[
+                    {
+                      value: "monthly",
+                      label: "Monthly",
+                    },
+                    {
+                      value: "annual",
+                      label: "Annual",
+                    },
+                  ]}
+                />
+              </div>
+              <div className="mt-[40px] flex justify-center">
+                <PieChart/>
+              </div>
             </div>
-            <div className=" border flex justify-center md:justify-start lg:w-1/2 w-full">
-              {/* <Bar className="!h-full" /> */}
+
+            <div className="shadow bg-white px-[30px] pt-[37px] pb-[30px] rounded-[10px] xl:w-1/2 w-full  relative ">
+              <div className="flex items-center justify-between w-full ">
+                <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
+                  Issue breakdown
+                </h3>
+                <Select
+                  variant="borderless"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] text-xl rounded-[5px]"
+                  defaultValue="monthly"
+                  style={{
+                    width: 120,
+                  }}
+                  options={[
+                    {
+                      value: "monthly",
+                      label: "Monthly",
+                    },
+                    {
+                      value: "annual",
+                      label: "Annual",
+                    },
+                  ]}
+                />
+              </div>
+              <div className="mt-[40px]">
+                <BarChart />
+              </div>
             </div>
           </div>
         </div>
+
         <div className="px-[10px] pb-[21px] pt-[30px] bg-white rounded-md shadow  ">
           <div className="flex gap-4">
             <div className="flex gap-3 ">
