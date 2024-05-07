@@ -25,7 +25,7 @@ const Billings = () => {
           plans={
             <h2 className="text-[70px] font-medium flex items-end group-hover:text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
               <sup className="text-3xl text-[#030303]/60 duration-500 group-hover:text-[#FFFFFF]/60  font-semibold">
-                <LiaDollarSignSolid size={40} />{" "}
+                <LiaDollarSignSolid size={40} className="!font-bold" />{" "}
               </sup>{" "}
               149.00{" "}
               <span className="text-xl text-[#030303]/60 font-semibold duration-500 group-hover:text-[#FFFFFF]/60">
@@ -39,7 +39,7 @@ const Billings = () => {
           plans={
             <h2 className="text-[70px] font-medium flex items-end text-white duration-500  leading-[55px] mt-[134px] px-[44px] ">
               <sup className="text-3xl text-white duration-500 group-hover:text-[#FFFFFF]/60  font-semibold">
-                <LiaDollarSignSolid size={40} />{" "}
+                <LiaDollarSignSolid size={40} className="!font-bold" />{" "}
               </sup>{" "}
               149.00{" "}
               <span className="text-xl text-white font-semibold duration-500 group-hover:text-[#FFFFFF]/60">
