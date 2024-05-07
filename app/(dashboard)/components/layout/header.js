@@ -107,8 +107,12 @@ const Header = ({ title }) => {
                   {items.map((item) => (
                     <div
                       onClick={item?.onClick}
-                      className={`flex ${item?.label == "Setting" ? "border-b hover:border-[#F1EEFF]" : ""} items-center gap-[74px] px-2 w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
-                 `}
+                      className={`flex ${
+                        item?.label == "Setting"
+                          ? "border-b hover:border-[#F1EEFF]"
+                          : ""
+                      } items-center gap-[74px] px-2 w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                   `}
                     >
                       <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal">
                         <span>{item?.icon}</span>
@@ -174,12 +178,12 @@ const Header = ({ title }) => {
         <div>
           <div className="flex flex-col gap-5 mb-5 items-center">
             {/* <Image
-              src="/profile.png"
-              width={500}
-              height={200}
-              alt="profile"
-              className="lg:w-[120px] lg:h-[120px] w-[70px] h-[70px] rounded-[5px]"
-            /> */}
+                src="/profile.png"
+                width={500}
+                height={200}
+                alt="profile"
+                className="lg:w-[120px] lg:h-[120px] w-[70px] h-[70px] rounded-[5px]"
+              /> */}
             <ImageInput name="image" />
             <h3 className="lg:text-[26px] text-base font-medium">John Doe</h3>
           </div>

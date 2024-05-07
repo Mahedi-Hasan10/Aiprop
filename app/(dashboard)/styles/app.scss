@@ -240,15 +240,40 @@ body {
 // .ant-table-thead .ant-table-cell{
 //   @apply bg-[#F1EEFF] py-[11px] border  rounded-lg #{!important};
 // }
-:where(.css-dev-only-do-not-override-mzwlov).ant-table-wrapper .ant-table-container table>thead>tr:first-child >*:first-child{
-  @apply rounded-s-[6px] 
+.ant-table-wrapper
+  .ant-table-container
+  table
+  > thead
+  > tr:first-child
+  > *:first-child {
+  @apply rounded-s-[6px];
 }
-:where(.css-dev-only-do-not-override-mzwlov).ant-table-wrapper .ant-table-container table>thead>tr:first-child >*:last-child{
-  @apply rounded-e-[6px] 
+.ant-table-wrapper
+  .ant-table-container
+  table
+  > thead
+  > tr:first-child
+  > *:last-child {
+  @apply rounded-e-[6px];
 }
-:where(.css-dev-only-do-not-override-mzwlov).ant-form-vertical .ant-form-item-label > label{
-  @apply text-[#030303]/40 text-2xl #{!important}
+.ant-form-vertical .ant-form-item-label > label {
+  @apply text-[#030303]/40 text-2xl #{!important};
 }
- .ant-form-item-label{
-  @apply  mt-[-15px] #{!important}
+.ant-form-item-label {
+  @apply mt-[-15px] #{!important};
+}
+
+.ant-segmented .ant-segmented-item-label {
+  @apply py-[11px] px-[16px] #{!important};
+}
+.ant-segmented .ant-segmented-group {
+  @apply p-[10px] bg-[#F1EEFF] #{!important};
+}
+.ant-segmented .ant-segmented-item-selected {
+  @apply bg-primary text-white #{!important};
+}
+
+// .ant-segmented .ant-segmented-group
+.ant-segmented-item {
+  @apply overflow-hidden #{!important};
 }
