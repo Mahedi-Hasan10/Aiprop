@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa6";
 const BillingCard = ({ title, plans, is_custom, is_active }) => {
   return (
     <div
-      className={`w-fll h-[802px] border shadow-md rounded-[20px] relative group overflow-hidden hover:bg-[#7655FA] duration-500 ${
+      className={`w-flt h-[802px] border shadow-md rounded-[20px] relative group overflow-hidden hover:bg-[#7655FA] duration-500 ${
         is_active ? "bg-primary" : "bg-white"
       }`}
     >
@@ -37,7 +37,7 @@ const BillingCard = ({ title, plans, is_custom, is_active }) => {
               <FaArrowRight className="text-xs" />
             </div>
             <span
-              className={`text-2xl ${
+              className={`lg:text-2xl text-xl ${
                 is_active ? "text-white" : "text-[#030303]/60"
               } group-hover:text-white duration-500 `}
             >
@@ -49,7 +49,7 @@ const BillingCard = ({ title, plans, is_custom, is_active }) => {
               <FaArrowRight className="text-xs" />
             </div>
             <span
-              className={`text-2xl ${
+              className={`lg:text-2xl text-xl  ${
                 is_active ? "text-white" : "text-[#030303]/60"
               } group-hover:text-white duration-500 `}
             >
@@ -61,7 +61,7 @@ const BillingCard = ({ title, plans, is_custom, is_active }) => {
               <FaArrowRight className="text-xs" />
             </div>
             <span
-              className={`text-2xl ${
+              className={`lg:text-2xl text-xl  ${
                 is_active ? "text-white" : "text-[#030303]/60"
               } group-hover:text-white duration-500`}
             >
@@ -70,7 +70,7 @@ const BillingCard = ({ title, plans, is_custom, is_active }) => {
           </div>
         </div>
         {is_custom ? (
-          <button className="w-[88%] text-center text-white group-hover:text-[#7655FA] duration-500 group-hover:bg-white  text-[28px] font-semibold bg-[#7655FA] absolute bottom-0 py-[13px] rounded-[5px]">
+          <button className="w-[88%] text-center text-white group-hover:text-[#7655FA] duration-500 group-hover:bg-white  lg:text-[28px] text-xl font-semibold bg-[#7655FA] absolute bottom-0 lg:py-[13px] py-[7px] rounded-[5px]">
             Contact Us
           </button>
         ) : (
@@ -79,7 +79,7 @@ const BillingCard = ({ title, plans, is_custom, is_active }) => {
               is_active ? "text-primary" : "text-white"
             } group-hover:text-[#7655FA] ${
               is_active ? "bg-white" : "bg-primary"
-            } duration-500 group-hover:bg-white  text-[28px] font-semibold  absolute bottom-0 py-[13px] rounded-[5px]`}
+            } duration-500 group-hover:bg-white  lg:text-[28px] text-xl font-semibold  absolute bottom-0 lg:py-[13px] py-[7px] rounded-[5px]`}
           >
             Choose Plan
           </button>
