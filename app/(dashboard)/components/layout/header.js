@@ -24,6 +24,7 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import { IoSettings } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
 import ImageInput from "../form/image";
+import SeeImage from "../form/seeImage";
 
 const Header = ({ title }) => {
   const [show, setShow] = useState(true);
@@ -184,7 +185,8 @@ const Header = ({ title }) => {
                 alt="profile"
                 className="lg:w-[120px] lg:h-[120px] w-[70px] h-[70px] rounded-[5px]"
               /> */}
-            <ImageInput name="image" />
+            {/* <ImageInput name="image" /> */}
+            <SeeImage />
             <h3 className="lg:text-[26px] text-base font-medium">John Doe</h3>
           </div>
           <Form
@@ -200,7 +202,7 @@ const Header = ({ title }) => {
                 type="text"
                 placeholder="Enter your name"
                 defaultValue="Amir Sheikh"
-                className="px-[30px] py-[15px] font-semibold text-sm  border bg-white "
+                className="px-[30px] py-[15px] text-2xl  border bg-white "
               />
             </Form.Item>
             <Form.Item label="Email" name="email">
@@ -208,7 +210,7 @@ const Header = ({ title }) => {
                 type="email"
                 defaultValue="johnsmith@gmail.com"
                 placeholder="Enter your email"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
+                className="px-[30px] py-[15px] text-2xl bg-white"
               />
             </Form.Item>
 
@@ -217,7 +219,7 @@ const Header = ({ title }) => {
                 type="text"
                 defaultValue="12345678"
                 placeholder="Enter your pasword"
-                className="px-[30px] py-[15px] font-semibold text-sm  bg-white"
+                className="px-[30px] py-[15px] text-2xl  bg-white"
               />
             </Form.Item>
 
@@ -229,7 +231,7 @@ const Header = ({ title }) => {
               <Input.Password
                 defaultValue="12345678"
                 placeholder="Password"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white placeholder:text-black "
+                className="px-[30px] py-[15px] text-2xl bg-white placeholder:text-black "
               />
             </Form.Item>
             <div className="  mt-[20px] text-[28px] font-semibold w-full ">
