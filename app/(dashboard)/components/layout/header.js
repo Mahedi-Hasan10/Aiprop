@@ -188,6 +188,7 @@ const Header = ({ title }) => {
             <h3 className="lg:text-[26px] text-base font-medium">John Doe</h3>
           </div>
           <Form
+            classname="profile"
             layout="vertical"
             className="w-full"
             onFinish={() => {
@@ -198,12 +199,14 @@ const Header = ({ title }) => {
               <Input
                 type="text"
                 placeholder="Enter your name"
+                defaultValue="Amir Sheikh"
                 className="px-[30px] py-[15px] font-semibold text-sm  border bg-white "
               />
             </Form.Item>
             <Form.Item label="Email" name="email">
               <Input
                 type="email"
+                defaultValue="johnsmith@gmail.com"
                 placeholder="Enter your email"
                 className="px-[30px] py-[15px] font-semibold text-sm bg-white"
               />
@@ -212,7 +215,8 @@ const Header = ({ title }) => {
             <Form.Item label="Password" name="password1">
               <Input
                 type="text"
-                placeholder="Enter your age"
+                defaultValue="12345678"
+                placeholder="Enter your pasword"
                 className="px-[30px] py-[15px] font-semibold text-sm  bg-white"
               />
             </Form.Item>
@@ -223,6 +227,7 @@ const Header = ({ title }) => {
               noStyle={false}
             >
               <Input.Password
+                defaultValue="12345678"
                 placeholder="Password"
                 className="px-[30px] py-[15px] font-semibold text-sm bg-white placeholder:text-black "
               />

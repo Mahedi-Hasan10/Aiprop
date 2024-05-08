@@ -165,7 +165,7 @@ const Page = () => {
         />
         <Modal open={openTenant}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
-            <h3 className=" font-medium text-[#030303]">Add new tenants</h3>
+            <h3 className=" font-medium text-[#030303]">Add new repairman</h3>
             <RxCross2 className="cursor-pointer" onClick={showTenantModal} />
           </div>
           <Form
@@ -196,10 +196,10 @@ const Page = () => {
                 className="px-[30px] py-[15px] font-semibold text-sm bg-white"
               />
             </Form.Item>
-            <Form.Item label="Rent" name="rent">
+            <Form.Item label="Type" name="type">
               <Input
                 type="text"
-                placeholder="Enter rent"
+                placeholder="Enter type"
                 className="px-[30px] py-[15px] font-semibold text-sm bg-white"
               />
             </Form.Item>
@@ -207,10 +207,10 @@ const Page = () => {
             <div className="  mt-[20px] text-[28px] font-semibold w-full ">
               <button
                 onClick={showTenantModal}
-                className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]"
+                className="w-full py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center gap-[13px]"
               >
                 <FaPlus />
-                Add Tenant
+                Add Repairman
               </button>
             </div>
           </Form>
