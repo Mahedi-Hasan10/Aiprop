@@ -30,7 +30,6 @@ const PieChart = () => {
       },
     ],
   };
-
   return <Pie data={data} className="md:!h-[300px] !h-[200px]" />;
 };
 
