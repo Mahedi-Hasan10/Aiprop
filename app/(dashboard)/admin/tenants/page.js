@@ -179,28 +179,28 @@ const Page = () => {
               <Input
                 type="text"
                 placeholder="Enter tenants name"
-                className="px-[30px] py-[15px] font-semibold text-sm  border bg-white "
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white  "
               />
             </Form.Item>
             <Form.Item label="Address" name="address">
               <Input
                 type="text"
                 placeholder="Enter tenants address"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
             <Form.Item label="Phone Number" name="phone">
               <Input
                 type="text"
                 placeholder="Enter tenants phone number"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
             <Form.Item label="Rent" name="rent">
               <Input
                 type="text"
                 placeholder="Enter rent"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
 

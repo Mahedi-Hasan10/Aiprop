@@ -13,42 +13,33 @@ const Billings = () => {
       </div>
       <div className="grid lg:grid-cols-2 xl:grid-cols-3 xl:gap-[30px] gap-3 justify-center">
         <BillingCard
-        services=" Up to 5 repairmen"
+          services=" Up to 5 repairmen"
           plans={
-            <h2 className="2xl:text-[70px] xl:text-[40px] text-[45px] whitespace-nowrap font-medium flex items-end group-hover:text-white duration-500  xl:leading-[55px] leading-10 mt-[134px] lg:px-7 px-[20px] md:px-[50px] xl:px-5 2xl:px-[50px]">
-              <sup className="text-3xl text-[#030303]/60 duration-500 group-hover:text-[#FFFFFF]/60  font-semibold">
-                <LiaDollarSignSolid  className="!font-bold text-[40px] 2xl:text-[60px] mt-3 md:mt-0" />{" "}
-              </sup>{" "}
-              149.00{" "}
-              <span className="text-xl  text-[#030303]/60 font-semibold duration-500 group-hover:text-[#FFFFFF]/60">
-                /month
-              </span>
+            <h2 className="2xl:text-[70px]  relative mt-[150px] 2xl:w-[362px] lg:w-[300px] w-[280px] xl:text-[40px] text-[45px] flex items-center  font-semibold group-hover:text-white">
+              <LiaDollarSignSolid className="!font-bold text-[40px] 2xl:text-[60px] group-hover:text-[#c8bbfd]  text-[#686868] relative 2xl:-right-4  2xl:-top-[15px] -right-2 -top-[10px] " />{" "}
+              <span className=""> 149.00</span>
+              <span className="text-textGray text-2xl absolute 2xl:right-0 lg:right-[11%] 2xl:top-12 lg:top-6 group-hover:text-[#c8bbfd] right-[6%] top-6 xl:right-[16%] xl:top-5">/month</span>
             </h2>
           }
           title="Basic"
         />
         <BillingCard
-        services=" Up to 15 tenants"
+          services=" Up to 15 tenants"
           plans={
-            <h2 className="2xl:text-[70px] xl:text-[40px] text-[45px] whitespace-nowrap text-white font-medium flex items-end group-hover:text-white duration-500  xl:leading-[55px] leading-10 mt-[134px] lg:px-7 px-[20px] md:px-[50px] xl:px-5 2xl:px-[50px] ">
-              <sup className=" text-white duration-500 group-hover:text-[#FFFFFF]/60  font-semibold">
-                <LiaDollarSignSolid  className="!font-bold text-[40px] 2xl:text-[60px] mt-3 md:mt-0 " />{" "}
-              </sup>{" "}
-              149.00{" "}
-              <span className="text-xl text-white font-semibold duration-500 group-hover:text-[#FFFFFF]/60">
-                /month
-              </span>
+            <h2 className="2xl:text-[70px] relative mt-[150px] 2xl:w-[362px] lg:w-[300px] w-[280px] xl:text-[40px] text-[45px] flex items-center  font-semibold group-hover:text-white text-white">
+              <LiaDollarSignSolid className="!font-bold text-[40px] 2xl:text-[60px] group-hover:text-[#c8bbfd]   text-[#c8bbfd] relative 2xl:-right-4  2xl:-top-[15px] -right-2 -top-[10px]" />{" "}
+              <span className=""> 149.00</span>
+              <span className="  text-2xl absolute 2xl:right-0 lg:right-[11%] 2xl:top-12 lg:top-6 group-hover:text-[#c8bbfd] text-[#c8bbfd] right-[6%] top-6 xl:right-[16%] xl:top-5">/month</span>
             </h2>
           }
           title="Premium"
           is_active={true}
         />
         <BillingCard
-        services=" Basic customer support"
+          services=" Basic customer support"
           plans={
-            <h2 className="2xl:text-[50px] xl:text-[40px] text-[40px] whitespace-nowrap  font-medium flex items-end group-hover:text-white duration-500  xl:leading-[55px] leading-10 mt-[134px] lg:px-7 px-[20px] md:px-[50px] xl:px-5 2xl:px-[50px]">
-              {" "}
-              Custom Price{" "}
+            <h2 className="2xl:text-[70px] border whitespace-nowrap mt-[150px] 2xl:w-[390px] xl:text-[40px] text-[45px] flex items-center  font-semibold group-hover:text-white ">
+              Discus Price
             </h2>
           }
           title="Enterprise"

@@ -202,7 +202,7 @@ const Header = ({ title }) => {
                 type="text"
                 placeholder="Enter your name"
                 defaultValue="Amir Sheikh"
-                className="px-[30px] py-[15px] text-2xl  border bg-white "
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl  border bg-white font-medium "
               />
             </Form.Item>
             <Form.Item label="Email" name="email">
@@ -210,7 +210,7 @@ const Header = ({ title }) => {
                 type="email"
                 defaultValue="johnsmith@gmail.com"
                 placeholder="Enter your email"
-                className="px-[30px] py-[15px] text-2xl bg-white"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white font-medium"
               />
             </Form.Item>
 
@@ -219,7 +219,7 @@ const Header = ({ title }) => {
                 type="text"
                 defaultValue="12345678"
                 placeholder="Enter your pasword"
-                className="px-[30px] py-[15px] text-2xl  bg-white"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl  bg-white font-medium"
               />
             </Form.Item>
 
@@ -231,7 +231,7 @@ const Header = ({ title }) => {
               <Input.Password
                 defaultValue="12345678"
                 placeholder="Password"
-                className="px-[30px] py-[15px] text-2xl bg-white placeholder:text-black "
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white font-medium  "
               />
             </Form.Item>
             <div className="  mt-[20px] text-[28px] font-semibold w-full ">

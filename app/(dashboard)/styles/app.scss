@@ -257,14 +257,14 @@ body {
   @apply rounded-e-[6px];
 }
 .ant-form-vertical .ant-form-item-label > label {
-  @apply text-[#030303]/40 text-2xl #{!important};
+  @apply text-[#030303]/40 text-2xl  #{!important};
 }
 .ant-form-item-label {
   @apply mt-[-15px] #{!important};
 }
 
 .ant-segmented .ant-segmented-item-label {
-  @apply py-[11px] px-[16px] #{!important};
+  @apply py-[2px] px-[16px] #{!important};
 }
 .ant-segmented .ant-segmented-group {
   @apply p-[10px] bg-[#F1EEFF] #{!important};
@@ -276,4 +276,12 @@ body {
 // .ant-segmented .ant-segmented-group
 .ant-segmented-item {
   @apply overflow-hidden #{!important};
+}
+
+:where(.css-dev-only-do-not-override-mzwlov).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  @apply text-[#7655FA] font-semibold bg-[#F1EEFF] #{!important}
+
+}
+:where(.css-dev-only-do-not-override-mzwlov).ant-select-single.ant-select-show-arrow .ant-select-selection-item, :where(.css-dev-only-do-not-override-mzwlov).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+  @apply text-xl w-[70px] #{!important}
 }

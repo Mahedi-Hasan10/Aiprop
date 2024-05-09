@@ -198,10 +198,10 @@ const AdminDashboard = () => {
             </div>
             <Select
               variant="borderless"
-              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] text-xl"
+              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
               defaultValue="monthly"
               style={{
-                width: 120,
+               
               }}
               options={[
                 {
