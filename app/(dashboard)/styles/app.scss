@@ -278,10 +278,21 @@ body {
   @apply overflow-hidden #{!important};
 }
 
-:where(.css-dev-only-do-not-override-mzwlov).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  @apply text-[#7655FA] font-semibold bg-[#F1EEFF] #{!important}
-
+:where(.css-dev-only-do-not-override-mzwlov).ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  @apply text-[#7655FA] font-semibold bg-[#F1EEFF] #{!important};
 }
-:where(.css-dev-only-do-not-override-mzwlov).ant-select-single.ant-select-show-arrow .ant-select-selection-item, :where(.css-dev-only-do-not-override-mzwlov).ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
-  @apply text-xl w-[70px] #{!important}
+:where(
+    .css-dev-only-do-not-override-mzwlov
+  ).ant-select-single.ant-select-show-arrow
+  .ant-select-selection-item,
+:where(
+    .css-dev-only-do-not-override-mzwlov
+  ).ant-select-single.ant-select-show-arrow
+  .ant-select-selection-placeholder {
+  @apply text-xl w-[70px] #{!important};
+}
+
+.ant-upload-list-item-name {
+  @apply text-2xl font-medium #{!important};
 }
