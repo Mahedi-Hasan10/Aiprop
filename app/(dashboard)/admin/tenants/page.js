@@ -250,7 +250,10 @@ const Page = () => {
         <Modal open={openTenantFile}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
             <h3 className=" font-medium text-[#030303]">Import new list</h3>
-            <RxCross2 className="cursor-pointer" onClick={showTenantModal} />
+            <RxCross2
+              className="cursor-pointer"
+              onClick={showTenantFileModal}
+            />
           </div>
           <Form
             layout="vertical"
