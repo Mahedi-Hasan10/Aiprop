@@ -101,7 +101,7 @@ const Page = () => {
     setTenantModel(!openTenant);
   };
   const showTenantFileModal = () => {
-    setTenantFileModel(!openTenant);
+    setTenantFileModel(!openTenantFile);
   };
   const handleSearch = (value) => {
     setSearchText(value.toLowerCase());
@@ -286,13 +286,13 @@ const Page = () => {
             </Dragger>
             <div className="flex gap-[30px] items-center justify-between  mt-[20px] text-[28px] font-semibold w-full ">
               <button
-                onClick={showTenantModal}
+                onClick={showTenantFileModal}
                 className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl font-semibold  w-full "
               >
                 Discard
               </button>
               <button
-                onClick={showTenantModal}
+                onClick={showTenantFileModal}
                 className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold  w-full "
               >
                 Import Tenant
