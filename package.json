@@ -21,7 +21,7 @@
     "draftjs-to-html": "^0.9.1",
     "firebase": "^10.11.1",
     "moment": "^2.30.1",
-    "next": "^13.4.13",
+    "next": "^14.2.3",
     "nprogress": "^0.2.0",
     "otp-timer-ts": "^3.0.1",
     "postcss": "^8.4.27",

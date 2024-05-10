@@ -296,3 +296,6 @@ body {
 .ant-upload-list-item-name {
   @apply text-2xl font-medium #{!important};
 }
+.ant-image-mask-info {
+  display: none !important;
+}
