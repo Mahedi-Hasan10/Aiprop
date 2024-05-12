@@ -63,14 +63,14 @@ const Sidebar = ({ menu }) => {
           </div>
         </div>
 
-        <ul className="menu px-[35px] mt-[50px] flex  flex-col gap-[24px]  ">
+        <ul className="menu px-[35px] mt-[50px] flex  flex-col gap-6  ">
           {menu.map((item, index) => (
             <li key={index}>
               <div
                 className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
                   pathname === item.href
                     ? "bg-primary !text-white !text-opacity-100"
-                    : ""
+                    : "hover:bg-primary hover:!text-white hover:!text-opacity-100 duration-500"
                 }`}
               >
                 {item.icons}
@@ -101,11 +101,11 @@ const Sidebar = ({ menu }) => {
               className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
                 pathname === "settings"
                   ? "bg-primary !text-white !text-opacity-100"
-                  : ""
+                  : "hover:bg-primary hover:!text-white hover:!text-opacity-100 duration-500"
               }`}
             >
               <IoSettings className="text-[32px]" />
-              <Link href="/admin/settings" className="md:flex hidden">
+              <Link href="/admin/settings" className="flex ">
                 <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
                   Settings
                 </span>
@@ -117,11 +117,11 @@ const Sidebar = ({ menu }) => {
               className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
                 pathname === "settings"
                   ? "bg-primary !text-white !text-opacity-100"
-                  : ""
+                  : "hover:bg-primary hover:!text-white hover:!text-opacity-100 duration-500"
               }`}
             >
               <IoLogOut className="text-[32px]" />
-              <Link href="/admin/settings" className="md:flex hidden">
+              <Link href="/admin/settings" className="flex ">
                 <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
                   Logout
                 </span>

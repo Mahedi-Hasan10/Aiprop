@@ -21,6 +21,8 @@ const { RangePicker } = DatePicker;
 import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 const { Dragger } = Upload;
+import { IoSearchOutline } from "react-icons/io5";
+
 
 const props = {
   name: "file",
@@ -162,13 +164,17 @@ const Page = () => {
             className="flex md:flex-row flex-col items-center gap-5 lg:w-1/2 w-full"
             style={{ marginBottom: 16 }}
           >
-            <Search
-              className="searchs"
-              placeholder={"Search here"}
-              allowClear
-              enterButton={false}
-              onChange={(e) => handleSearch(e.target.value)}
-            />
+            <div className="flex border items-center w-full px-[20px] py-1 rounded-[5px] overflow-hidden ">
+              <IoSearchOutline className="text-xl font-semibold -[23px]" />
+              <Search
+                variant="borderless"
+                className="searchs"
+                placeholder={"Search here"}
+                allowClear
+                enterButton={false}
+                onChange={(e) => handleSearch(e.target.value)}
+              />
+            </div>
             <RangePicker
               onChange={handleDateChange}
               placeholder={["Pick Date Range", ""]}
