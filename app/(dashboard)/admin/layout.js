@@ -9,17 +9,18 @@ import Footer from "../components/layout/footer";
 
 const Layout = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gray-100 font-roboto">
+    <div className=" bg-gray-100 font-roboto">
       <>
         {/* <UserContextProvider> */}
         <Sidebar title="Aiprop" menu={menu} />
-        <Header title="Aiprop" />
-        <div className="content ">
-          <div className="md:ms-[44px] md:mt-[15px] md:mb-[15px] xl:p-[30px] p-[10px]">
+        <div className="content flex flex-col relative ">
+          <Header title="Aiprop" />
+          <div className=" xl:mt-[30px] mt-[15px] xl:mx-[31px] mx-[15px] xl:mb-[30px] mb-[15px] relative ">
             {children}
           </div>
+          <Footer />
         </div>
-        {/* <Footer /> */}
+
         {/* </UserContextProvider> */}
       </>
     </div>

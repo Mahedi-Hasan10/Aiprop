@@ -30,27 +30,29 @@ const BarChart = () => {
     const [chartOption, setChartOption] =useState({})
     useEffect(()=>{
       setChartData({
-        labels: ["Plumbing", "Electrician ", "Handy Man", "Natural Gas" ],
+        labels: ["Plumbing", "Electrician", "Handy Man", "Natural Gas"],
         datasets: [
           {
             data: [80000, 42201, 59490, 11933],
             border: 'none',
             backgroundColor: '#7655FA',
-
           },
         ]
       })
       setChartOption({
-        plugin:{
-          length:{
-            position: 'top',
-          },
-          title:{
+        plugins: {
+          title: {
             display: true,
             text: 'Roboto',
-            fontSize: '10px',
-          }
+            font: {
+              size: (context) => {
+                return context.chart.width <= 768 ? 10 : 30; // Adjust font size based on chart width
+              }
+            },
+          },
         },
+        responsive: true,
+        maintainAspectRatio: false,
       })
     },[])
 

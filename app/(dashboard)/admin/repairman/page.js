@@ -103,11 +103,11 @@ const Page = () => {
   return (
     <div className="">
       <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full">
-        <div className="flex justify-between items-center">
+        <div className="flex lg:flex-row flex-col justify-between items-center">
           <h3 className="text-[28px] font-semibold text-[#030303] mb-[30px]">
             Filter by - ID
           </h3>
-          <div className="flex items-center gap-5 mb-[30px]">
+          <div className="flex md:flex-row flex-col md:items-center gap-5 mb-[30px]">
             <button className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center gap-[13px]">
               <Image
                 src="/import.png"
@@ -127,24 +127,24 @@ const Page = () => {
             </button>
           </div>
         </div>
-        <div className="flex justify-between items-center mb-[30px]">
+        <div className="flex lg:flex-row flex-col justify-between md:items-center  mb-[30px]">
           <div
-            className="flex items-center gap-5 w-1/2"
+            className="flex md:flex-row flex-col items-center gap-5 lg:w-1/2 w-full"
             style={{ marginBottom: 16 }}
           >
             <Search
+              className="searchs"
               placeholder={"Search here"}
               allowClear
               enterButton={false}
               onChange={(e) => handleSearch(e.target.value)}
             />
             <RangePicker
-              style={{ marginLeft: 8 }}
               onChange={handleDateChange}
               placeholder={["Pick Date Range", ""]}
             />
           </div>
-          <button className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center gap-[13px]">
+          <button className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]">
             Show 10 Results
             <Image
               src="/import.png"

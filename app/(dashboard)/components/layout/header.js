@@ -69,8 +69,8 @@ const Header = ({ title }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   return (
-    <header className="fixed left-0 md:left-[309px] md:px-3 top-0 right-0 md:h-[96px] bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
-      <div className=" flex justify-between items-center h-full md:py-[30px] px-[15px] py-[22px] flex-row-reverse md:flex-row gap-2 ">
+    <header className=" md:h-[96px] border bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
+      <div className=" border flex justify-between items-center h-full md:py-[30px] px-[30px] py-[22px] flex-row-reverse md:flex-row gap-2 ">
         <h2 className="capitalize xl:text-[44px] lg:text-2xl md:text-xl font-medium hidden md:block  ">
           {extractedPath === "home"
             ? " Welcome, John Doe!"
@@ -101,10 +101,9 @@ const Header = ({ title }) => {
               </Badge>
             </div>
             <Tooltip
-              placement="bottomRight"
               color="#ffff"
               title={
-                <div className="flex flex-col gap-[10px] w-[280px] ">
+                <div className="flex flex-col gap-[10px]  ">
                   {items.map((item) => (
                     <div
                       onClick={item?.onClick}
@@ -112,7 +111,7 @@ const Header = ({ title }) => {
                         item?.label == "Setting"
                           ? "border-b hover:border-[#F1EEFF]"
                           : ""
-                      } items-center gap-[74px] px-2 w-[232px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                      } items-center gap-[74px] px-2 xl:w-[232px] md:w-[200px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
                    `}
                     >
                       <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal">
@@ -133,7 +132,7 @@ const Header = ({ title }) => {
             >
               <a>
                 <Space>
-                  <div className="flex lg:gap-5 gap-2 items-center cursor-pointer">
+                  <div className="flex lg:gap-5 gap-2 items-center cursor-pointer ">
                     <Image
                       src="/profile.png"
                       width={500}
