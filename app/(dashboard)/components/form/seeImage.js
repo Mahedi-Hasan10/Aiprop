@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "antd";
 import { FaCamera } from "react-icons/fa";
 const SeeImage = () => (
-  <div className="relative group overflow-hidden">
+  <div className="relative group w-[150px] h-[149px] overflow-hidden">
     <Image
       className="rounded"
       width={150}

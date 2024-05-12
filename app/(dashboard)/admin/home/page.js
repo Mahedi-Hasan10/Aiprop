@@ -6,16 +6,13 @@ import { Table } from "antd";
 import { DataSource, DataSource2 } from "../../components/data";
 import dynamic from "next/dynamic";
 
-
 const PieChart = dynamic(() => import("../../components/admin/pieChart.js"), {
   ssr: false,
-})
+});
 
 const BarChart = dynamic(() => import("../../components/admin/barChart.js"), {
   ssr: false,
-})
-
-
+});
 
 const columns = [
   {
@@ -107,7 +104,6 @@ const columns2 = [
   },
 ];
 
-
 const AdminDashboard = () => {
   return (
     <div className="relative">
@@ -130,17 +126,36 @@ const AdminDashboard = () => {
                 <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
                   Repair call stats
                 </h3>
-                <select name="cars" className="px-5 py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none">
-                  <option value="saab" className=" bg-white !hover:bg-[#F1EEFF] border ">Month  <Image
-                    src="/check.png"
-                    height={20}
-                    width={20}
-                    className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
-                    alt="check"
-                  />
+                <select
+                  name="cars"
+                  className="px-5 py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none"
+                >
+                  <option
+                    value="saab"
+                    className=" bg-white !hover:bg-[#F1EEFF] border "
+                  >
+                    Month{" "}
+                    <Image
+                      src="/check.png"
+                      height={20}
+                      width={20}
+                      className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
+                      alt="check"
+                    />
                   </option>
-                  <option value="opel" className=" bg-white ">Opel</option>
-                  <option value="audi" className=" bg-white ">Audi</option>
+                  <option value="opel" className=" bg-white ">
+                    Opel{" "}
+                    <Image
+                      src="/check.png"
+                      height={20}
+                      width={20}
+                      className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
+                      alt="check"
+                    />
+                  </option>
+                  <option value="audi" className=" bg-white ">
+                    Audi
+                  </option>
                 </select>
               </div>
               <div className="mt-[40px] flex justify-center">
@@ -153,17 +168,29 @@ const AdminDashboard = () => {
                 <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
                   Issue breakdown
                 </h3>
-                <select name="cars" className="px-5 py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none">
-                  <option value="saab" className=" bg-white !hover:bg-[#F1EEFF] border ">Month  <Image
-                    src="/check.png"
-                    height={20}
-                    width={20}
-                    className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
-                    alt="check"
-                  />
+                <select
+                  name="cars"
+                  className="px-5 py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none"
+                >
+                  <option
+                    value="saab"
+                    className=" bg-white !hover:bg-[#F1EEFF] border "
+                  >
+                    Month{" "}
+                    <Image
+                      src="/check.png"
+                      height={20}
+                      width={20}
+                      className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
+                      alt="check"
+                    />
                   </option>
-                  <option value="opel" className=" bg-white ">Opel</option>
-                  <option value="audi" className=" bg-white ">Audi</option>
+                  <option value="opel" className=" bg-white ">
+                    Opel
+                  </option>
+                  <option value="audi" className=" bg-white ">
+                    Audi
+                  </option>
                 </select>
               </div>
               <div className="mt-[40px]">
@@ -187,20 +214,36 @@ const AdminDashboard = () => {
                 Tenant calls
               </h3>
             </div>
-            <select name="cars" className="px-5 md:py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none">
-              <option value="saab" className=" bg-white !hover:bg-[#F1EEFF] border ">Month  <Image
-                src="/check.png"
-                height={20}
-                width={20}
-                className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
-                alt="check"
-              />
+            <select
+              name="cars"
+              className="px-5 md:py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none"
+            >
+              <option
+                value="saab"
+                className=" bg-white !hover:bg-[#F1EEFF] border "
+              >
+                Month{" "}
+                <Image
+                  src="/check.png"
+                  height={20}
+                  width={20}
+                  className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
+                  alt="check"
+                />
               </option>
-              <option value="opel" className=" bg-white ">Opel</option>
-              <option value="audi" className=" bg-white ">Audi</option>
+              <option value="opel" className=" bg-white ">
+                Opel
+              </option>
+              <option value="audi" className=" bg-white ">
+                Audi
+              </option>
             </select>
           </div>
-          <Table dataSource={DataSource2} columns={columns2} className="relative"/>
+          <Table
+            dataSource={DataSource2}
+            columns={columns2}
+            className="relative"
+          />
         </div>
       </div>
     </div>
