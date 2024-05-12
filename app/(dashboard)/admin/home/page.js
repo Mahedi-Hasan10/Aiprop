@@ -130,21 +130,59 @@ const AdminDashboard = () => {
                 <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
                   Repair call stats
                 </h3>
-                <select name="cars" className="px-5 py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none">
-                  <option value="saab" className=" bg-white !hover:bg-[#F1EEFF] border ">Month  <Image
-                    src="/check.png"
-                    height={20}
-                    width={20}
-                    className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
-                    alt="check"
-                  />
-                  </option>
-                  <option value="opel" className=" bg-white ">Opel</option>
-                  <option value="audi" className=" bg-white ">Audi</option>
-                </select>
+                <Select
+                  variant="borderless"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
+                  defaultValue="monthly"
+                  style={{
+
+                  }}
+                  options={[
+                    {
+                      value: "monthly",
+                      label: "Monthly",
+                    },
+                    {
+                      value: "annual",
+                      label: "Annual",
+                    },
+                  ]}
+                />
               </div>
-              <div className="mt-[40px] flex justify-center">
-                <PieChart />
+              <div className="mt-[40px] flex justify-center flex-col">
+                <div className="w-full h-full flex justify-center">
+                  <PieChart />
+                </div>
+                <div className="mt-[30px] flex md:flex-row flex-col justify-between gap-4 ">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-[24px] h-[24px] bg-[#6D48FF]"></div>
+                      <h2 className="text-xl text-[#030303]/60">Bills plumbing</h2>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[24px] h-[24px] bg-[#E4DDFE]"></div>
+                      <h2 className="text-xl text-[#030303]/60">Jeff’s plumbing</h2>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[24px] h-[24px] bg-[#4ECB71]"></div>
+                      <h2 className="text-xl text-[#030303]/60">Johnson's HVAC</h2>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-[24px] h-[24px] bg-[#D99BFF]"></div>
+                      <h2 className="text-xl text-[#030303]/60">Estep electric</h2>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[24px] h-[24px] bg-[#FF9A62]"></div>
+                      <h2 className="text-xl text-[#030303]/60">Air leaks</h2>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-[24px] h-[24px] bg-[#FFD233]"></div>
+                      <h2 className="text-xl text-[#030303]/60">Omar</h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -153,18 +191,24 @@ const AdminDashboard = () => {
                 <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
                   Issue breakdown
                 </h3>
-                <select name="cars" className="px-5 py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none">
-                  <option value="saab" className=" bg-white !hover:bg-[#F1EEFF] border ">Month  <Image
-                    src="/check.png"
-                    height={20}
-                    width={20}
-                    className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
-                    alt="check"
-                  />
-                  </option>
-                  <option value="opel" className=" bg-white ">Opel</option>
-                  <option value="audi" className=" bg-white ">Audi</option>
-                </select>
+                <Select
+                  variant="borderless"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
+                  defaultValue="monthly"
+                  style={{
+
+                  }}
+                  options={[
+                    {
+                      value: "monthly",
+                      label: "Monthly",
+                    },
+                    {
+                      value: "annual",
+                      label: "Annual",
+                    },
+                  ]}
+                />
               </div>
               <div className="mt-[40px]">
                 <BarChart />
@@ -187,20 +231,26 @@ const AdminDashboard = () => {
                 Tenant calls
               </h3>
             </div>
-            <select name="cars" className="px-5 md:py-2 rounded-[5px] bg-[#F1EEFF] text-xl outline-none">
-              <option value="saab" className=" bg-white !hover:bg-[#F1EEFF] border ">Month  <Image
-                src="/check.png"
-                height={20}
-                width={20}
-                className="h-[9px] w-[12px] hidden group-hover:flex duration-500"
-                alt="check"
-              />
-              </option>
-              <option value="opel" className=" bg-white ">Opel</option>
-              <option value="audi" className=" bg-white ">Audi</option>
-            </select>
+            <Select
+              variant="borderless"
+              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
+              defaultValue="monthly"
+              style={{
+
+              }}
+              options={[
+                {
+                  value: "monthly",
+                  label: "Monthly",
+                },
+                {
+                  value: "annual",
+                  label: "Annual",
+                },
+              ]}
+            />
           </div>
-          <Table dataSource={DataSource2} columns={columns2} className="relative"/>
+          <Table dataSource={DataSource2} columns={columns2} className="relative" />
         </div>
       </div>
     </div>

@@ -69,7 +69,7 @@ const Header = ({ title }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   return (
-    <header className=" md:h-[96px] border bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
+    <header className=" md:h-[96px]  bg-white transition-all duration-300 z-10 border-b-[1.5px] border-[#030303] border-opacity-10">
       <div className=" border flex justify-between items-center h-full md:py-[30px] px-[30px] py-[22px] flex-row-reverse md:flex-row gap-2 ">
         <h2 className="capitalize xl:text-[44px] lg:text-2xl md:text-xl font-medium hidden md:block  ">
           {extractedPath === "home"
