@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Table } from "antd";
 import { DataSource, DataSource2 } from "../../components/data";
 import dynamic from "next/dynamic";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const PieChart = dynamic(() => import("../../components/admin/pieChart.js"), {
   ssr: false,
@@ -105,6 +106,8 @@ const columns2 = [
 ];
 
 const AdminDashboard = () => {
+  const { user, error, isLoading } = useUser();
+
   return (
     <div className="relative">
       <div className="flex xl:flex-row flex-col xl:gap-[30px] gap-[10px] w-full relative ">

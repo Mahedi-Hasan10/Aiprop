@@ -1,3 +1,4 @@
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./styles/app.scss";
 export const metadata = {
   title: "Aiprop",
@@ -8,7 +9,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/logo/favicon.png" />
-      <body>{children}</body>
+      <body>
+        <UserProvider>{children}</UserProvider>
+      </body>
     </html>
   );
 }

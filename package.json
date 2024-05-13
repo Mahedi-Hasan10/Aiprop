@@ -8,6 +8,7 @@
     "start": "next start --port 3000"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@fontsource/poppins": "^5.0.8",
     "@metismenu/react": "^0.0.3",
     "antd": "^5.16.4",
@@ -17,6 +18,7 @@
     "axios": "^1.4.0",
     "chart.js": "^4.4.2",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "firebase": "^10.11.1",

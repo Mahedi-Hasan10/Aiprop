@@ -10,21 +10,18 @@ import {
   Tooltip,
 } from "antd";
 import { FaBars, FaCross } from "react-icons/fa";
-import { FiLock, FiLogOut, FiSettings, FiUser } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
-import { MdOutlineAttachEmail } from "react-icons/md";
 import { useState } from "react";
 import { IoNotifications } from "react-icons/io5";
-import { IoSearchOutline } from "react-icons/io5";
 import Button2 from "../common/button2";
 import { RxCross2 } from "react-icons/rx";
 import { BiSolidDownArrow } from "react-icons/bi";
 import { IoSettings } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
-import ImageInput from "../form/image";
 import SeeImage from "../form/seeImage";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Header = ({ title }) => {
   const [show, setShow] = useState(true);
@@ -35,7 +32,12 @@ const Header = ({ title }) => {
   const extractedPath = pathname.slice(adminIndex + 7);
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const { user, error, isLoading } = useUser();
+  console.log("🚀 ~ Header ~ user:", user);
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+  const router = useRouter();
   const showModal = () => {
     setOpen(!open);
   };
@@ -43,10 +45,10 @@ const Header = ({ title }) => {
     setOpenProfile(!openProfile);
   };
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    router.push("/api/auth/logout");
     message.success("Logged out successfully");
     showModal();
-    // router.push("/login");
+    router.push("/api/auth/login");
   };
 
   const items = [
@@ -143,10 +145,10 @@ const Header = ({ title }) => {
                     <div className="flex gap-4 items-center">
                       <div>
                         <h1 className="lg:text-2xl text-base font-medium">
-                          John Doe.
+                          {user?.family_name}
                         </h1>
                         <h3 className="lg:text-base text-xs text-textGray">
-                          example@gmail.com
+                          {user?.email}
                         </h3>
                       </div>
                       <BiSolidDownArrow />
