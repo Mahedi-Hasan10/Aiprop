@@ -145,7 +145,7 @@ const Header = ({ title }) => {
                     <div className="flex gap-4 items-center">
                       <div>
                         <h1 className="lg:text-2xl text-base font-medium">
-                          {user?.family_name}
+                          {user?.username}
                         </h1>
                         <h3 className="lg:text-base text-xs text-textGray">
                           {user?.email}

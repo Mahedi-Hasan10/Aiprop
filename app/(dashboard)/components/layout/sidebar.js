@@ -3,22 +3,27 @@ import Link from "next/link";
 import Image from "next/image";
 import { IoClose, IoLogOut, IoSettings } from "react-icons/io5";
 import { IoNotifications } from "react-icons/io5";
-import { Badge } from "antd";
+import { Badge, message, Modal } from "antd";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Button2 from "../common/button2";
 const Sidebar = ({ menu }) => {
   const [show] = useState(true);
   const pathname = usePathname();
+  const { user, error, isLoading } = useUser();
+  const [open, setOpen] = useState(false);
 
-  // const handleLogout = async () => {
-  //   try {
-  //     localStorage.clear();
-  //     await swalAlert.success("Logout successful");
-  //     router.push("/login");
-  //   } catch (error) {
-  //     await swalAlert.error("Logout failed");
-  //   }
-  // };
+  const router = useRouter();
+  const showModal = () => {
+    setOpen(!open);
+  };
+  const handleLogout = () => {
+    router.push("/api/auth/logout");
+    message.success("Logged out successfully");
+    showModal();
+    router.push("/api/auth/login");
+  };
   return (
     <>
       <div
@@ -32,25 +37,20 @@ const Sidebar = ({ menu }) => {
       />
       <aside className="sidebar !z-20 !bg-bgLine hover:text-primary  w-full h-full flex  flex-col justify- border-r-[1.5px] border-[#030303] border-opacity-10">
         <div className="title w-full h-[60px] flex  items-center  justify-between md:justify-center px-3 mt-4 md:mt-8 ">
-          <div className=" ">
-            <div className=" flex items-center gap-2  ">
-              <Image
-                src="/logo.png"
-                width={500}
-                height={200}
-                alt=" logo"
-                className="w-[25px] h-[28px] md:w-[37px] md:h-[48px]"
-              />
-              <h1 className="font-semibold text-[25px] md:text-4xl text-black ">
-                Property
-              </h1>
-            </div>
-            <div className="border-b-[1.5px] border-[#030303] border-opacity-10 mt-[23px] md:block hidden"></div>
+          <div className=" flex items-center gap-2  ">
+            <Image
+              src="/logo.png"
+              width={500}
+              height={200}
+              alt=" logo"
+              className="w-[25px] h-[28px] md:w-[37px] md:h-[48px]"
+            />
+            <h1 className="font-semibold text-[25px] md:text-4xl text-black ">
+              Property
+            </h1>
           </div>
-          <div className="flex items-center gap-5 md:hidden">
-            <Badge dot={show}>
-              <IoNotifications className="text-textGray text-2xl" />
-            </Badge>
+          <div className="border-b-[1.5px] border-[#030303] border-opacity-10 mt-[23px] md:block hidden"></div>
+          <div className="flex items-center gap-5 md:hidden cursor-pointer">
             <IoClose
               onClick={() => {
                 document.querySelector(".sidebar").classList.remove("open");
@@ -121,11 +121,25 @@ const Sidebar = ({ menu }) => {
               }`}
             >
               <IoLogOut className="text-[32px]" />
-              <Link href="/admin/settings" className="flex ">
-                <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
-                  Logout
-                </span>
-              </Link>
+              <span
+                onClick={showModal}
+                className="lg:text-2xl text-xl lg:font-semibold font-medium cursor-pointer"
+              >
+                Logout
+              </span>
+              <Modal open={open} onOk={showModal}>
+                <h3 className="text-[36px] font-medium mb-[30px]">Log out?</h3>
+                <p className="text-[28px]">Are you sure you want to log out?</p>
+                <div className="flex gap-[30px] mt-[60px] text-[28px] font-semibold">
+                  <Button2
+                    title="Yes"
+                    is_filled={false}
+                    onClick={handleLogout}
+                  />
+                  <Button2 title="No" is_filled={true} onClick={showModal} />
+                </div>
+              </Modal>
+              ;
             </div>
           </li>
         </ul>
