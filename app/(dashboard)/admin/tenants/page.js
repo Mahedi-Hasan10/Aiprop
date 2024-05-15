@@ -11,6 +11,7 @@ import {
   Table,
   Input,
   DatePicker,
+  Select,
 } from "antd";
 import { CiMenuKebab } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
@@ -22,7 +23,6 @@ import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 const { Dragger } = Upload;
 import { IoSearchOutline } from "react-icons/io5";
-
 
 const props = {
   name: "file",
@@ -180,16 +180,27 @@ const Page = () => {
               placeholder={["Pick Date Range", ""]}
             />
           </div>
-          <button className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]">
-            Show 10 Results
-            <Image
-              src="/import.png"
-              height={50}
-              width={50}
-              alt="import"
-              className="h-[18px] w-[18px]"
-            />
-          </button>
+
+          <Select
+            variant="borderless"
+            className="py-[10px] px-[16px] !w-[194px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]"
+            defaultValue="Show10Results"
+            style={{}}
+            options={[
+              {
+                value: "Show10Results",
+                label: "Show 10 Results",
+              },
+              {
+                value: "Show20Results",
+                label: "Show 20 Results",
+              },
+              {
+                value: "Show30Results",
+                label: "Show 30 Results",
+              },
+            ]}
+          />
         </div>
         <Table
           className="overflow-x-scroll"

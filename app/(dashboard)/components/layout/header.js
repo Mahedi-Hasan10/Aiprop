@@ -113,7 +113,7 @@ const Header = ({ title }) => {
                         item?.label == "Setting"
                           ? "border-b hover:border-[#F1EEFF]"
                           : ""
-                      } items-center gap-[74px] px-2 xl:w-[232px] md:w-[200px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                      } items-center lg:gap-[74px] gap-[40px] px-2 xl:w-[232px] md:w-[200px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
                    `}
                     >
                       <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal">
@@ -249,8 +249,12 @@ const Header = ({ title }) => {
 
       {/* logout modal ========================= */}
       <Modal open={open} onOk={showModal}>
-        <h3 className="text-[36px] font-medium mb-[30px]">Log out?</h3>
-        <p className="text-[28px]">Are you sure you want to log out?</p>
+        <h3 className="lg:text-[36px] text-[25px] font-medium mb-[30px]">
+          Log out?
+        </h3>
+        <p className="lg:text-[28px] md:text-[22px] text-xl">
+          Are you sure you want to log out?
+        </p>
         <div className="flex gap-[30px] mt-[60px] text-[28px] font-semibold">
           <Button2 title="Yes" is_filled={false} onClick={handleLogout} />
           <Button2 title="No" is_filled={true} onClick={showModal} />

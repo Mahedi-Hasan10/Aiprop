@@ -123,13 +123,17 @@ const Sidebar = ({ menu }) => {
               <IoLogOut className="text-[32px]" />
               <span
                 onClick={showModal}
-                className="lg:text-2xl text-xl lg:font-semibold font-medium cursor-pointer"
+                className="lg:text-3xl text-2xl lg:font-semibold font-medium cursor-pointer"
               >
                 Logout
               </span>
               <Modal open={open} onOk={showModal}>
-                <h3 className="text-[36px] font-medium mb-[30px]">Log out?</h3>
-                <p className="text-[28px]">Are you sure you want to log out?</p>
+                <h3 className="lg:text-[36px] text-[25px] font-medium mb-[30px]">
+                  Log out?
+                </h3>
+                <p className="lg:text-[28px] md:text-[22px] text-xl">
+                  Are you sure you want to log out?
+                </p>
                 <div className="flex gap-[30px] mt-[60px] text-[28px] font-semibold">
                   <Button2
                     title="Yes"
