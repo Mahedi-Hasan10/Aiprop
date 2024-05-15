@@ -159,9 +159,9 @@ const Page = () => {
             </button>
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col justify-between md:items-center  mb-[30px]">
+        <div className="flex lg:flex-row flex-col justify-between  md:items-center  mb-[30px]">
           <div
-            className="flex md:flex-row flex-col items-center gap-5 lg:w-1/2 w-full"
+            className="flex lg:flex-row flex-col items-center  gap-5 lg:w-[65%] w-full"
             style={{ marginBottom: 16 }}
           >
             <div className="flex border items-center w-full px-[20px] py-1 rounded-[5px] overflow-hidden ">
@@ -178,12 +178,13 @@ const Page = () => {
             <RangePicker
               onChange={handleDateChange}
               placeholder={["Pick Date Range", ""]}
+              className="rangeP"
             />
           </div>
 
           <Select
             variant="borderless"
-            className="py-[10px] px-[16px] !w-[194px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]"
+            className="py-[10px] px-[16px] border !w-[194px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]"
             defaultValue="Show10Results"
             style={{}}
             options={[

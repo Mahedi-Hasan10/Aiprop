@@ -3,16 +3,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { IoClose, IoLogOut, IoSettings } from "react-icons/io5";
 import { IoNotifications } from "react-icons/io5";
-import { Badge, message, Modal } from "antd";
+import { Badge, Form, Input, message, Modal } from "antd";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Button2 from "../common/button2";
+import { RxCross2 } from "react-icons/rx";
+import SeeImage from "../form/seeImage";
 const Sidebar = ({ menu }) => {
   const [show] = useState(true);
   const pathname = usePathname();
   const { user, error, isLoading } = useUser();
   const [open, setOpen] = useState(false);
+  const [openProfile, setOpenProfile] =useState(false)
 
   const router = useRouter();
   const showModal = () => {
@@ -24,6 +27,15 @@ const Sidebar = ({ menu }) => {
     showModal();
     router.push("/api/auth/login");
   };
+
+  // profile modal 
+  const openModal =()=>{
+    setOpenProfile(true)
+  }
+  const closeModal =()=>{
+    setOpenProfile(false)
+  }
+
   return (
     <>
       <div
@@ -67,11 +79,10 @@ const Sidebar = ({ menu }) => {
           {menu.map((item, index) => (
             <li key={index}>
               <div
-                className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
-                  pathname === item.href
+                className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${pathname === item.href
                     ? "bg-primary !text-white !text-opacity-100"
                     : "hover:bg-primary hover:!text-white hover:!text-opacity-100 duration-500"
-                }`}
+                  }`}
               >
                 {item.icons}
                 <Link href={item.href || "#!"} className="md:flex hidden">
@@ -98,14 +109,14 @@ const Sidebar = ({ menu }) => {
           ))}
           <li className="mt-4 pt-10 border-t-[1.5px] border-[#030303] border-opacity-10">
             <div
-              className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
-                pathname === "settings"
+            onClick={openModal}
+              className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${pathname === "settings"
                   ? "bg-primary !text-white !text-opacity-100"
                   : "hover:bg-primary hover:!text-white hover:!text-opacity-100 duration-500"
-              }`}
+                }`}
             >
               <IoSettings className="text-[32px]" />
-              <Link href="/admin/settings" className="flex ">
+              <Link href="#" className="flex ">
                 <span className="lg:text-2xl text-xl lg:font-semibold font-medium">
                   Settings
                 </span>
@@ -114,11 +125,10 @@ const Sidebar = ({ menu }) => {
           </li>
           <li>
             <div
-              className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${
-                pathname === "settings"
+              className={`flex items-center py-[15px] px-[25px] rounded-[10px] gap-5 text-[#030303] text-opacity-60  duration-500 ${pathname === "settings"
                   ? "bg-primary !text-white !text-opacity-100"
                   : "hover:bg-primary hover:!text-white hover:!text-opacity-100 duration-500"
-              }`}
+                }`}
             >
               <IoLogOut className="text-[32px]" />
               <span
@@ -148,6 +158,81 @@ const Sidebar = ({ menu }) => {
           </li>
         </ul>
       </aside>
+      <Modal open={openProfile} onCancel={closeModal}>
+      
+        <div className="flex justify-between mb-[20px] text-[26px] ">
+          <h3 className=" font-medium text-[#030303]">Edit Profile</h3>
+          <RxCross2 className="cursor-pointer" onClick={closeModal} />
+        </div>
+        <div>
+          <div className="flex flex-col gap-5 mb-5 items-center">
+            {/* <Image
+                src="/profile.png"
+                width={500}
+                height={200}
+                alt="profile"
+                className="lg:w-[120px] lg:h-[120px] w-[70px] h-[70px] rounded-[5px]"
+              /> */}
+            {/* <ImageInput name="image" /> */}
+            <SeeImage />
+            <h3 className="lg:text-[26px] text-base font-medium">John Doe</h3>
+          </div>
+          <Form
+            classname="profile"
+            layout="vertical"
+            className="w-full"
+            onFinish={() => {
+              message.success("Profile updated successfully");
+            }}
+          >
+            <Form.Item label="FullName" name="name">
+              <Input
+                type="text"
+                placeholder="Enter your name"
+                defaultValue="Amir Sheikh"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl   bg-white font-medium "
+              />
+            </Form.Item>
+            <Form.Item label="Email" name="email">
+              <Input
+                type="email"
+                defaultValue="johnsmith@gmail.com"
+                placeholder="Enter your email"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white font-medium"
+              />
+            </Form.Item>
+
+            <Form.Item label="Password" name="password1">
+              <Input
+                type="text"
+                defaultValue="12345678"
+                placeholder="Enter your pasword"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl  bg-white font-medium"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Confirm Password"
+              name="password2"
+              noStyle={false}
+            >
+              <Input.Password
+                defaultValue="12345678"
+                placeholder="Password"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white font-medium  "
+              />
+            </Form.Item>
+            <div className="  mt-[20px] text-[28px] font-semibold w-full ">
+              <Button2
+                title="Save"
+                is_filled={true}
+                onClick={closeModal}
+                classname="!w-full  h-fit !py-2"
+              />
+            </div>
+          </Form>
+        </div>
+      </Modal>
     </>
   );
 };

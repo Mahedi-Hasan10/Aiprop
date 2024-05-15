@@ -11,6 +11,7 @@ import {
   Table,
   Input,
   DatePicker,
+  Select,
 } from "antd";
 import { CiMenuKebab } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
@@ -128,9 +129,9 @@ const Page = () => {
             </button>
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col justify-between md:items-center  mb-[30px]">
+        <div className="flex lg:flex-row flex-col justify-between  md:items-center  mb-[30px]">
           <div
-            className="flex md:flex-row flex-col items-center gap-5 lg:w-1/2 w-full"
+            className="flex lg:flex-row flex-col items-center  gap-5 lg:w-[65%] w-full"
             style={{ marginBottom: 16 }}
           >
             <div className="flex border items-center w-full px-[20px] py-1 rounded-[5px] overflow-hidden ">
@@ -147,18 +148,30 @@ const Page = () => {
             <RangePicker
               onChange={handleDateChange}
               placeholder={["Pick Date Range", ""]}
+              className="rangeP"
             />
           </div>
-          <button className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]">
-            Show 10 Results
-            <Image
-              src="/import.png"
-              height={50}
-              width={50}
-              alt="import"
-              className="h-[18px] w-[18px]"
-            />
-          </button>
+
+          <Select
+            variant="borderless"
+            className="py-[10px] px-[16px] border !w-[194px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center justify-center gap-[13px]"
+            defaultValue="Show10Results"
+            style={{}}
+            options={[
+              {
+                value: "Show10Results",
+                label: "Show 10 Results",
+              },
+              {
+                value: "Show20Results",
+                label: "Show 20 Results",
+              },
+              {
+                value: "Show30Results",
+                label: "Show 30 Results",
+              },
+            ]}
+          />
         </div>
         <Table
           className="overflow-x-scroll"
