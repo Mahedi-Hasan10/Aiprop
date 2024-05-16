@@ -8,6 +8,7 @@ import {
   Form,
   Input,
   Tooltip,
+  notification,
 } from "antd";
 import { FaBars, FaCross } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
@@ -37,6 +38,7 @@ const Header = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const { user, error, isLoading } = useUser();
+  const [Notification, setNotification] = useState(false)
 
 
   if (isLoading) return <div>Loading...</div>;
@@ -74,6 +76,11 @@ const Header = ({ title }) => {
   const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
+
+  const openHandle = () => {
+    setNotification(!Notification); // Toggle the state
+  };
+
   return (
     <header className=" md:h-[96px]  bg-white transition-all duration-300 z-10 -b-[1.5px] -[#030303] -opacity-10">
       <div className="  flex justify-between items-center h-full md:py-[30px] px-[30px] py-[22px] flex-row-reverse md:flex-row gap-2 ">
@@ -151,6 +158,7 @@ const Header = ({ title }) => {
             </Tooltip>
 
           </Badge>
+
           <FaBars
             className="text-2xl text-primary"
             role="button"
@@ -166,75 +174,75 @@ const Header = ({ title }) => {
         </div>
         <div className="flex items-center">
           <div className="md:flex items-center lg:gap-[35px] gap-5 hidden  ">
-            <div className="flex items-center justify-center h-12 w-12 rounded-[5px] bg-[#F8F8F9]">
-              <Badge dot={show}>
-                <Tooltip trigger={'click'} color="#ffff" overlayClassName="w-[100%]  relative" placement="bottomRight"
-                  title={<div className="w-full relative pb-4 px-3">
-                    <header className="h-[40px]  flex justify-between items-center">
-                      <h1 className="text-base font-semibold text-black">Notifications</h1>
-                      <p className="text-sm hover:font-semibold hover:underline text-blue-500 duration-500 cursor-pointer">View All</p>
-                    </header>
-                    <main className="mt-3 flex flex-col gap-3">
-                      <div className="flex gap-3 text-black">
-                        <div>
-                          <div className="w-[30px] h-[30px] rounded-full cursor-pointer flex items-center justify-center overflow-hidden ">
-                            <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
-                          </div>
-                        </div>
-                        <div className="">
-                          <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                          <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
-                          <p className="mt-2 flex gap-1 items-center text-black/70 ">
-                            <FiClock size={15} />
-                            <span>3 min ago</span>
-                          </p>
-
-                        </div>
-                      </div>
-                      <div className="flex gap-3 text-black">
-                        <div>
-                          <div className="w-[30px] h-[30px] rounded-full cursor-pointer  flex items-center justify-center overflow-hidden ">
-                            <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
-                          </div>
-                        </div>
-                        <div className="">
-                          <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                          <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
-                          <p className="mt-2 flex gap-1 items-center text-black/70 ">
-                            <FiClock size={15} />
-                            <span>3 min ago</span>
-                          </p>
-
-                        </div>
-                      </div>
-                      <div className="flex gap-3 text-black">
-                        <div>
-                          <div className="w-[30px] h-[30px] cursor-pointer rounded-full  flex items-center justify-center overflow-hidden ">
-                            <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
-                          </div>
-                        </div>
-                        <div className="">
-                          <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                          <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
-                          <p className="mt-2 flex gap-1 items-center text-black/70 ">
-                            <FiClock size={15} />
-                            <span>3 min ago</span>
-                          </p>
-
-                        </div>
-                      </div>
-                    </main>
-                    <footer className="w-full flex justify-center items-center mt-4 group gap-2 cursor-pointer">
-                      <div className="flex w-[20px] h-[20px] group-hover:bg-blue-700 group-hover:text-white items-center justify-center  border rounded-full text-black">
-                        <TbArrowNarrowRight size={10} />
-                      </div>
-                      <p className=" text-black group-hover:text-blue-500 group-hover:font-medium text-sm group-hover:underline duration-500">View More...</p>
-                    </footer>
-                  </div>}>
-                  <IoNotifications className="text-[#030303] text-2xl" />
-                </Tooltip>
-
+            <div className="flex items-center justify-center h-12 w-12 rounded-[5px] bg-[#F8F8F9] relative">
+              <Badge dot={show} onClick={openHandle} className="cursor-pointer">
+                <IoNotifications className="text-[#030303] text-2xl" />
               </Badge>
+              {Notification && (
+                <div className="md:w-[400px] w-[250px] rounded-[10px]  pb-4 md:px-8 px-3 py-5 absolute top-[80px]   bg-white shadows">
+                  <header className="h-[40px]  flex justify-between items-center">
+                    <h1 className="text-base font-semibold text-black">Notifications</h1>
+                    <p className="text-sm hover:font-semibold hover:underline text-blue-500 duration-500 cursor-pointer">View All</p>
+                  </header>
+                  <main className="mt-3 flex flex-col gap-3">
+                    <div className="flex gap-3 text-black">
+                      <div>
+                        <div className="w-[30px] h-[30px] rounded-full cursor-pointer flex items-center justify-center overflow-hidden ">
+                          <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
+                        <p className="mt-2 flex gap-1 items-center text-black/70 ">
+                          <FiClock size={15} />
+                          <span>3 min ago</span>
+                        </p>
+
+                      </div>
+                    </div>
+                    <div className="flex gap-3 text-black">
+                      <div>
+                        <div className="w-[30px] h-[30px] rounded-full cursor-pointer  flex items-center justify-center overflow-hidden ">
+                          <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
+                        <p className="mt-2 flex gap-1 items-center text-black/70 ">
+                          <FiClock size={15} />
+                          <span>3 min ago</span>
+                        </p>
+
+                      </div>
+                    </div>
+                    <div className="flex gap-3 text-black">
+                      <div>
+                        <div className="w-[30px] h-[30px] cursor-pointer rounded-full  flex items-center justify-center overflow-hidden ">
+                          <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
+                        <p className="mt-2 flex gap-1 items-center text-black/70 ">
+                          <FiClock size={15} />
+                          <span>3 min ago</span>
+                        </p>
+
+                      </div>
+                    </div>
+                  </main>
+                  <footer className="w-full flex justify-center items-center mt-8 group gap-2 cursor-pointer">
+                    <div className="flex w-[20px] h-[20px] group-hover:bg-blue-700 group-hover:text-white items-center justify-center  border rounded-full text-black">
+                      <TbArrowNarrowRight size={10} />
+                    </div>
+                    <p className=" text-black group-hover:text-blue-500 group-hover:font-medium text-sm group-hover:underline duration-500">View More...</p>
+                  </footer>
+                </div>
+              )}
+             
             </div>
             <Tooltip
               color="#ffff"

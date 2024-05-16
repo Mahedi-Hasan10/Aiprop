@@ -23,6 +23,9 @@ import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 const { Dragger } = Upload;
 import { IoSearchOutline } from "react-icons/io5";
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+
 
 const props = {
   name: "file",
@@ -47,10 +50,10 @@ const props = {
 const ActionMenu = ({ record }) => (
   <Menu>
     <Menu.Item key="edit">
-      <button>Edit</button>
+      <button className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"> <MdEdit size={24} /> Edit</button>
     </Menu.Item>
     <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
-      <button>Delete</button>
+      <button className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"> <RiDeleteBin6Fill size={24} /> Delete</button>
     </Menu.Item>
   </Menu>
 );

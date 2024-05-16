@@ -18,16 +18,18 @@ import { FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { Modal, Form } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 const { Search } = Input;
 const { RangePicker } = DatePicker;
 
 const ActionMenu = ({ record }) => (
   <Menu>
     <Menu.Item key="edit">
-      <button>Edit</button>
+      <button className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"> <MdEdit size={24} /> Edit</button>
     </Menu.Item>
     <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
-      <button>Delete</button>
+      <button className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"> <RiDeleteBin6Fill size={24} /> Delete</button>
     </Menu.Item>
   </Menu>
 );
