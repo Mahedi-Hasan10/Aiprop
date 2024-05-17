@@ -109,7 +109,7 @@ const Page = () => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Tooltip title="Actions">
+        <Tooltip>
           <Dropdown
             overlay={<ActionMenu record={record} />}
             trigger={["hover"]}
