@@ -255,6 +255,7 @@ const AdminDashboard = () => {
             dataSource={DataSource2}
             columns={columns2}
             className="relative"
+            pagination={{ pageSize: 15 }}
           />
         </div>
       </div>

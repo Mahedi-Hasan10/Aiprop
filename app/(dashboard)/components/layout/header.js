@@ -1,4 +1,4 @@
-//
+"use client";
 import {
   message,
   Dropdown,
@@ -14,7 +14,7 @@ import { FaBars, FaCross } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoNotifications } from "react-icons/io5";
 import Button2 from "../common/button2";
 import { RxCross2 } from "react-icons/rx";
@@ -27,8 +27,8 @@ import { CgProfile } from "react-icons/cg";
 import { FiClock } from "react-icons/fi";
 import { TbArrowNarrowRight } from "react-icons/tb";
 
-
 const Header = ({ title }) => {
+  const [form] = Form.useForm();
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
   const pathName = usePathname().split("/");
@@ -38,12 +38,13 @@ const Header = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const { user, error, isLoading } = useUser();
-  const [Notification, setNotification] = useState(false)
-
+  console.log("🚀 ~ Header ~ user:", user);
+  const [Notification, setNotification] = useState(false);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   const router = useRouter();
+
   const showModal = () => {
     setOpen(!open);
   };
@@ -91,72 +92,114 @@ const Header = ({ title }) => {
         </h2>
         <div className="flex items-center gap-5 md:hidden ">
           <Badge dot={show}>
-            <Tooltip trigger={'click'} color="#ffff" overlayClassName="w-[100%]  relative" placement="bottomRight"
-              title={<div className="w-full relative pb-4 px-3">
-                <header className="h-[40px]  flex justify-between items-center">
-                  <h1 className="text-base font-semibold text-black">Notifications</h1>
-                  <p className="text-sm hover:font-semibold hover:underline text-blue-500 duration-500 cursor-pointer">View All</p>
-                </header>
-                <main className="mt-3 flex flex-col gap-3">
-                  <div className="flex gap-3 text-black">
-                    <div>
-                      <div className="w-[30px] h-[30px] rounded-full cursor-pointer flex items-center justify-center overflow-hidden ">
-                        <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+            <Tooltip
+              trigger={"click"}
+              color="#ffff"
+              overlayClassName="w-[100%]  relative"
+              placement="bottomRight"
+              title={
+                <div className="w-full relative pb-4 px-3">
+                  <header className="h-[40px]  flex justify-between items-center">
+                    <h1 className="text-base font-semibold text-black">
+                      Notifications
+                    </h1>
+                    <p className="text-sm hover:font-semibold hover:underline text-blue-500 duration-500 cursor-pointer">
+                      View All
+                    </p>
+                  </header>
+                  <main className="mt-3 flex flex-col gap-3">
+                    <div className="flex gap-3 text-black">
+                      <div>
+                        <div className="w-[30px] h-[30px] rounded-full cursor-pointer flex items-center justify-center overflow-hidden ">
+                          <Image
+                            src="/default.png"
+                            width={500}
+                            height={200}
+                            alt="profile"
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
+                        </div>
+                      </div>
+                      <div className="">
+                        <h1 className="text-base font-medium line-clamp-1  ">
+                          Your order is placed
+                        </h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nobis ullam natus consequatur velit rem impedit?
+                        </p>
+                        <p className="mt-2 flex gap-1 items-center text-black/70 ">
+                          <FiClock size={15} />
+                          <span>3 min ago</span>
+                        </p>
                       </div>
                     </div>
-                    <div className="">
-                      <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                      <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
-                      <p className="mt-2 flex gap-1 items-center text-black/70 ">
-                        <FiClock size={15} />
-                        <span>3 min ago</span>
-                      </p>
-
-                    </div>
-                  </div>
-                  <div className="flex gap-3 text-black">
-                    <div>
-                      <div className="w-[30px] h-[30px] rounded-full cursor-pointer  flex items-center justify-center overflow-hidden ">
-                        <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                    <div className="flex gap-3 text-black">
+                      <div>
+                        <div className="w-[30px] h-[30px] rounded-full cursor-pointer  flex items-center justify-center overflow-hidden ">
+                          <Image
+                            src="/default.png"
+                            width={500}
+                            height={200}
+                            alt="profile"
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
+                        </div>
+                      </div>
+                      <div className="">
+                        <h1 className="text-base font-medium line-clamp-1  ">
+                          Your order is placed
+                        </h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nobis ullam natus consequatur velit rem impedit?
+                        </p>
+                        <p className="mt-2 flex gap-1 items-center text-black/70 ">
+                          <FiClock size={15} />
+                          <span>3 min ago</span>
+                        </p>
                       </div>
                     </div>
-                    <div className="">
-                      <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                      <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
-                      <p className="mt-2 flex gap-1 items-center text-black/70 ">
-                        <FiClock size={15} />
-                        <span>3 min ago</span>
-                      </p>
-
-                    </div>
-                  </div>
-                  <div className="flex gap-3 text-black">
-                    <div>
-                      <div className="w-[30px] h-[30px] cursor-pointer rounded-full  flex items-center justify-center overflow-hidden ">
-                        <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                    <div className="flex gap-3 text-black">
+                      <div>
+                        <div className="w-[30px] h-[30px] cursor-pointer rounded-full  flex items-center justify-center overflow-hidden ">
+                          <Image
+                            src="/default.png"
+                            width={500}
+                            height={200}
+                            alt="profile"
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
+                        </div>
+                      </div>
+                      <div className="">
+                        <h1 className="text-base font-medium line-clamp-1  ">
+                          Your order is placed
+                        </h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nobis ullam natus consequatur velit rem impedit?
+                        </p>
+                        <p className="mt-2 flex gap-1 items-center text-black/70 ">
+                          <FiClock size={15} />
+                          <span>3 min ago</span>
+                        </p>
                       </div>
                     </div>
-                    <div className="">
-                      <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                      <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
-                      <p className="mt-2 flex gap-1 items-center text-black/70 ">
-                        <FiClock size={15} />
-                        <span>3 min ago</span>
-                      </p>
-
+                  </main>
+                  <footer className="w-full flex justify-center items-center mt-4 group gap-2 cursor-pointer">
+                    <div className="flex w-[20px] h-[20px] group-hover:bg-blue-700 group-hover:text-white items-center justify-center  border rounded-full text-black">
+                      <TbArrowNarrowRight size={10} />
                     </div>
-                  </div>
-                </main>
-                <footer className="w-full flex justify-center items-center mt-4 group gap-2 cursor-pointer">
-                  <div className="flex w-[20px] h-[20px] group-hover:bg-blue-700 group-hover:text-white items-center justify-center  border rounded-full text-black">
-                    <TbArrowNarrowRight size={10} />
-                  </div>
-                  <p className=" text-black group-hover:text-blue-500 group-hover:font-medium text-sm group-hover:underline duration-500">View More...</p>
-                </footer>
-              </div>}>
+                    <p className=" text-black group-hover:text-blue-500 group-hover:font-medium text-sm group-hover:underline duration-500">
+                      View More...
+                    </p>
+                  </footer>
+                </div>
+              }
+            >
               <IoNotifications className="text-[#030303] text-2xl" />
             </Tooltip>
-
           </Badge>
 
           <FaBars
@@ -181,56 +224,90 @@ const Header = ({ title }) => {
               {Notification && (
                 <div className="md:w-[400px] w-[250px] rounded-[10px]  pb-4 md:px-8 px-3 py-5 absolute top-[80px]   bg-white shadows">
                   <header className="h-[40px]  flex justify-between items-center">
-                    <h1 className="text-base font-semibold text-black">Notifications</h1>
-                    <p className="text-sm hover:font-semibold hover:underline text-blue-500 duration-500 cursor-pointer">View All</p>
+                    <h1 className="text-base font-semibold text-black">
+                      Notifications
+                    </h1>
+                    <p className="text-sm hover:font-semibold hover:underline text-blue-500 duration-500 cursor-pointer">
+                      View All
+                    </p>
                   </header>
                   <main className="mt-3 flex flex-col gap-3">
                     <div className="flex gap-3 text-black">
                       <div>
                         <div className="w-[30px] h-[30px] rounded-full cursor-pointer flex items-center justify-center overflow-hidden ">
-                          <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                          <Image
+                            src="/default.png"
+                            width={500}
+                            height={200}
+                            alt="profile"
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
                         </div>
                       </div>
                       <div className="">
-                        <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                        <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
+                        <h1 className="text-base font-medium line-clamp-1  ">
+                          Your order is placed
+                        </h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nobis ullam natus consequatur velit rem impedit?
+                        </p>
                         <p className="mt-2 flex gap-1 items-center text-black/70 ">
                           <FiClock size={15} />
                           <span>3 min ago</span>
                         </p>
-
                       </div>
                     </div>
                     <div className="flex gap-3 text-black">
                       <div>
                         <div className="w-[30px] h-[30px] rounded-full cursor-pointer  flex items-center justify-center overflow-hidden ">
-                          <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                          <Image
+                            src="/default.png"
+                            width={500}
+                            height={200}
+                            alt="profile"
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
                         </div>
                       </div>
                       <div className="">
-                        <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                        <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
+                        <h1 className="text-base font-medium line-clamp-1  ">
+                          Your order is placed
+                        </h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nobis ullam natus consequatur velit rem impedit?
+                        </p>
                         <p className="mt-2 flex gap-1 items-center text-black/70 ">
                           <FiClock size={15} />
                           <span>3 min ago</span>
                         </p>
-
                       </div>
                     </div>
                     <div className="flex gap-3 text-black">
                       <div>
                         <div className="w-[30px] h-[30px] cursor-pointer rounded-full  flex items-center justify-center overflow-hidden ">
-                          <Image src='/default.png' width={500} height={200} alt="profile" className="w-[30px] h-[30px] rounded-full" />
+                          <Image
+                            src="/default.png"
+                            width={500}
+                            height={200}
+                            alt="profile"
+                            className="w-[30px] h-[30px] rounded-full"
+                          />
                         </div>
                       </div>
                       <div className="">
-                        <h1 className="text-base font-medium line-clamp-1  ">Your order is placed</h1>
-                        <p className="text-xs  line-clamp-2 text-black/70 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ullam natus consequatur velit rem impedit?</p>
+                        <h1 className="text-base font-medium line-clamp-1  ">
+                          Your order is placed
+                        </h1>
+                        <p className="text-xs  line-clamp-2 text-black/70 ">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Nobis ullam natus consequatur velit rem impedit?
+                        </p>
                         <p className="mt-2 flex gap-1 items-center text-black/70 ">
                           <FiClock size={15} />
                           <span>3 min ago</span>
                         </p>
-
                       </div>
                     </div>
                   </main>
@@ -238,11 +315,12 @@ const Header = ({ title }) => {
                     <div className="flex w-[20px] h-[20px] group-hover:bg-blue-700 group-hover:text-white items-center justify-center  border rounded-full text-black">
                       <TbArrowNarrowRight size={10} />
                     </div>
-                    <p className=" text-black group-hover:text-blue-500 group-hover:font-medium text-sm group-hover:underline duration-500">View More...</p>
+                    <p className=" text-black group-hover:text-blue-500 group-hover:font-medium text-sm group-hover:underline duration-500">
+                      View More...
+                    </p>
                   </footer>
                 </div>
               )}
-             
             </div>
             <Tooltip
               color="#ffff"
@@ -251,10 +329,9 @@ const Header = ({ title }) => {
                   {items.map((item) => (
                     <div
                       onClick={item?.onClick}
-                      className={`flex ${item?.label == "Setting"
-                        ? "-b hover:-[#F1EEFF]"
-                        : ""
-                        } items-center lg:gap-[74px] gap-[40px] px-2 xl:w-[232px] md:w-[200px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
+                      className={`flex ${
+                        item?.label == "Setting" ? "-b hover:-[#F1EEFF]" : ""
+                      } items-center lg:gap-[74px] gap-[40px] px-2 xl:w-[232px] md:w-[200px]  group hover:bg-[#F1EEFF] duration-500 cursor-pointer py-[10px] rounded-[5px]
                    `}
                     >
                       <h2 className="flex items-center group-hover:text-[#7655FA] gap-4 duration-500 text-[#030303]/60 font-normal">
@@ -332,6 +409,7 @@ const Header = ({ title }) => {
             <h3 className="lg:text-[26px] text-base font-medium">John Doe</h3>
           </div>
           <Form
+            form={form}
             classname="profile"
             layout="vertical"
             className="w-full"
@@ -343,14 +421,12 @@ const Header = ({ title }) => {
               <Input
                 type="text"
                 placeholder="Enter your name"
-                defaultValue="Amir Sheikh"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl   bg-white font-medium "
               />
             </Form.Item>
             <Form.Item label="Email" name="email">
               <Input
                 type="email"
-                defaultValue="johnsmith@gmail.com"
                 placeholder="Enter your email"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white font-medium"
               />

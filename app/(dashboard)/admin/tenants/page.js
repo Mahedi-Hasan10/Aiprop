@@ -25,7 +25,7 @@ const { Dragger } = Upload;
 import { IoSearchOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-
+import Swal from "sweetalert2";
 
 const props = {
   name: "file",
@@ -47,56 +47,6 @@ const props = {
   },
 };
 
-const ActionMenu = ({ record }) => (
-  <Menu>
-    <Menu.Item key="edit">
-      <button className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"> <MdEdit size={24} /> Edit</button>
-    </Menu.Item>
-    <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
-      <button className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"> <RiDeleteBin6Fill size={24} /> Delete</button>
-    </Menu.Item>
-  </Menu>
-);
-
-const columns = [
-  {
-    title: "SL",
-    dataIndex: "id",
-    key: "id",
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Phone Number",
-    dataIndex: "phone",
-    key: "phone",
-  },
-  {
-    title: "Rent",
-    dataIndex: "rent",
-    key: "rent",
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (text, record) => (
-      <Tooltip title="Actions">
-        <Dropdown overlay={<ActionMenu record={record} />} trigger={["hover"]}>
-          <Button type="link" icon={<CiMenuKebab className="rotate-90" />} />
-        </Dropdown>
-      </Tooltip>
-    ),
-  },
-];
-
 const Page = () => {
   const [searchText, setSearchText] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
@@ -115,6 +65,89 @@ const Page = () => {
   const handleDateChange = (dates) => {
     setSelectedDates(dates);
   };
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
+  const ActionMenu = ({ record }) => (
+    <Menu>
+      <Menu.Item key="edit">
+        <button
+          onClick={showTenantModal}
+          className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"
+        >
+          {" "}
+          <MdEdit size={24} /> Edit
+        </button>
+      </Menu.Item>
+      <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
+        <button
+          onClick={handleDelete}
+          className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"
+        >
+          {" "}
+          <RiDeleteBin6Fill size={24} /> Delete
+        </button>
+      </Menu.Item>
+    </Menu>
+  );
+  const columns = [
+    {
+      title: "SL",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phone",
+      key: "phone",
+    },
+    {
+      title: "Rent",
+      dataIndex: "rent",
+      key: "rent",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Tooltip title="Actions">
+          <Dropdown
+            overlay={<ActionMenu record={record} />}
+            trigger={["hover"]}
+          >
+            <Button type="link" icon={<CiMenuKebab className="rotate-90" />} />
+          </Dropdown>
+        </Tooltip>
+      ),
+    },
+  ];
 
   const filteredDataSource = dataSource3.filter((item) => {
     const isTextMatch = Object.keys(item).some(
