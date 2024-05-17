@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dataSource3 } from "../../components/data";
 import { IoIosSearch } from "react-icons/io";
 import Image from "next/image";
@@ -48,12 +48,34 @@ const props = {
 };
 
 const Page = () => {
+  const [form] = Form.useForm();
   const [searchText, setSearchText] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
   const [openTenant, setTenantModel] = useState(false);
   const [openTenantFile, setTenantFileModel] = useState(false);
+  const [edit, setEdit] = useState(false);
+
+  const onEditHandle = () => {
+    setEdit(true);
+    showTenantModal();
+  };
+  useEffect(() => {
+    if (edit) {
+      form.setFieldsValue({
+        name: "John Doe",
+        address: "Texas City",
+        phone: "+880454544",
+        rent: "1000",
+      });
+    }
+  }, [edit, form]);
   const showTenantModal = () => {
     setTenantModel(!openTenant);
+  };
+  const hideTenantModal = () => {
+    setTenantModel(!openTenant);
+    setEdit(false);
+    form.resetFields();
   };
   const showTenantFileModal = () => {
     setTenantFileModel(!openTenantFile);
@@ -89,7 +111,7 @@ const Page = () => {
     <Menu>
       <Menu.Item key="edit">
         <button
-          onClick={showTenantModal}
+          onClick={onEditHandle}
           className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"
         >
           {" "}
@@ -250,13 +272,17 @@ const Page = () => {
         {/* form=== */}
         <Modal open={openTenant}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
-            <h3 className=" font-medium text-[#030303]">Add new tenants</h3>
-            <RxCross2 className="cursor-pointer" onClick={showTenantModal} />
+            <h3 className=" font-medium text-[#030303]">
+              {edit ? "Update tenants" : "Add new tenants"}
+            </h3>
+            <RxCross2 className="cursor-pointer" onClick={hideTenantModal} />
           </div>
           <Form
+            form={form}
             layout="vertical"
             className="w-full"
             onFinish={() => {
+              form.resetFields();
               message.success("Added successfully");
             }}
           >
@@ -295,7 +321,7 @@ const Page = () => {
                 className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]"
               >
                 <FaPlus />
-                Add Tenant
+                {edit ? "Update Tenant" : "Add Tenant"}
               </button>
             </div>
           </Form>

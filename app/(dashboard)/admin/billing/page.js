@@ -42,7 +42,7 @@ const Billings = () => {
         <BillingCard
           services=" Basic customer support"
           plans={
-            <h2 className="2xl:text-[50px] text-center whitespace-nowrap mt-[150px] 2xl:w-[390px] xl:text-[40px] text-[45px] flex items-center  font-semibold group-hover:text-white ">
+            <h2 className="2xl:text-[60px] text-center whitespace-nowrap mt-[150px] 2xl:w-[390px] xl:text-[40px] text-[45px] flex items-center  font-semibold group-hover:text-white ">
               Business Plan
             </h2>
           }

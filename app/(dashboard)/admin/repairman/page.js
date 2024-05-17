@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dataSource3 } from "../../components/data";
 import { IoIosSearch } from "react-icons/io";
 import Image from "next/image";
@@ -17,19 +17,68 @@ import { CiMenuKebab } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { Modal, Form } from "antd";
+const { Search } = Input;
+const { RangePicker } = DatePicker;
+import { InboxOutlined } from "@ant-design/icons";
+import { message, Upload } from "antd";
+const { Dragger } = Upload;
 import { IoSearchOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
-const { Search } = Input;
-const { RangePicker } = DatePicker;
+
+const props = {
+  name: "file",
+  multiple: true,
+  action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
+  onChange(info) {
+    const { status } = info.file;
+    if (status !== "uploading") {
+      console.log(info.file, info.fileList);
+    }
+    if (status === "done") {
+      message.success(`${info.file.name} file uploaded successfully.`);
+    } else if (status === "error") {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+  onDrop(e) {
+    console.log("Dropped files", e.dataTransfer.files);
+  },
+};
 
 const Page = () => {
+  const [form] = Form.useForm();
   const [searchText, setSearchText] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
-  const [openTenant, setTenantModel] = useState(false);
-  const showTenantModal = () => {
-    setTenantModel(!openTenant);
+  const [openRepairman, setRepairmanModel] = useState(false);
+  const [openRepairmanFile, setRepairmanFileModel] = useState(false);
+  const [edit, setEdit] = useState(false);
+
+  const onEditHandle = () => {
+    setEdit(true);
+    showRepairmanModal();
+  };
+  useEffect(() => {
+    if (edit) {
+      form.setFieldsValue({
+        name: "John Doe",
+        address: "Texas City",
+        phone: "+880454544",
+        rent: "1000",
+      });
+    }
+  }, [edit, form]);
+  const showRepairmanModal = () => {
+    setRepairmanModel(!openRepairman);
+  };
+  const hideRepairmanModal = () => {
+    setRepairmanModel(!openRepairman);
+    setEdit(false);
+    form.resetFields();
+  };
+  const showRepairmanFileModal = () => {
+    setRepairmanFileModel(!openRepairmanFile);
   };
   const handleSearch = (value) => {
     setSearchText(value.toLowerCase());
@@ -38,6 +87,7 @@ const Page = () => {
   const handleDateChange = (dates) => {
     setSelectedDates(dates);
   };
+
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -61,7 +111,7 @@ const Page = () => {
     <Menu>
       <Menu.Item key="edit">
         <button
-          onClick={showTenantModal}
+          onClick={onEditHandle}
           className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"
         >
           {" "}
@@ -145,7 +195,10 @@ const Page = () => {
             Filter by - ID
           </h3>
           <div className="flex md:flex-row flex-col md:items-center gap-5 mb-[30px]">
-            <button className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center gap-[13px]">
+            <button
+              onClick={showRepairmanFileModal}
+              className="py-[10px] px-[16px]  bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center gap-[13px]"
+            >
               <Image
                 src="/import.png"
                 height={50}
@@ -156,8 +209,8 @@ const Page = () => {
               Import new list
             </button>
             <button
-              onClick={showTenantModal}
-              className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center gap-[13px]"
+              onClick={showRepairmanModal}
+              className="py-[10px] px-[16px] justify-center bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center gap-[13px]"
             >
               <FaPlus />
               Add new
@@ -216,10 +269,71 @@ const Page = () => {
             position: ["bottomCenter"],
           }}
         />
-        <Modal open={openTenant}>
+        {/* form=== */}
+        <Modal open={openRepairman}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
-            <h3 className=" font-medium text-[#030303]">Add new repairman</h3>
-            <RxCross2 className="cursor-pointer" onClick={showTenantModal} />
+            <h3 className=" font-medium text-[#030303]">
+              {edit ? "Update Repairmans" : "Add new Repairmans"}
+            </h3>
+            <RxCross2 className="cursor-pointer" onClick={hideRepairmanModal} />
+          </div>
+          <Form
+            form={form}
+            layout="vertical"
+            className="w-full"
+            onFinish={() => {
+              form.resetFields();
+              message.success("Added successfully");
+            }}
+          >
+            <Form.Item label="Name" name="name">
+              <Input
+                type="text"
+                placeholder="Enter Repairmans name"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white  "
+              />
+            </Form.Item>
+            <Form.Item label="Address" name="address">
+              <Input
+                type="text"
+                placeholder="Enter Repairmans address"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
+              />
+            </Form.Item>
+            <Form.Item label="Phone Number" name="phone">
+              <Input
+                type="text"
+                placeholder="Enter Repairmans phone number"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
+              />
+            </Form.Item>
+            <Form.Item label="Rent" name="rent">
+              <Input
+                type="text"
+                placeholder="Enter rent"
+                className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
+              />
+            </Form.Item>
+
+            <div className="  mt-[20px] text-[28px] font-semibold w-full ">
+              <button
+                onClick={showRepairmanModal}
+                className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]"
+              >
+                <FaPlus />
+                {edit ? "Update Repairman" : "Add Repairman"}
+              </button>
+            </div>
+          </Form>
+        </Modal>
+        {/* file */}
+        <Modal open={openRepairmanFile}>
+          <div className="flex justify-between mb-[40px] text-[26px] ">
+            <h3 className=" font-medium text-[#030303]">Import new list</h3>
+            <RxCross2
+              className="cursor-pointer"
+              onClick={showRepairmanFileModal}
+            />
           </div>
           <Form
             layout="vertical"
@@ -228,42 +342,40 @@ const Page = () => {
               message.success("Added successfully");
             }}
           >
-            <Form.Item label="Name" name="name">
-              <Input
-                type="text"
-                placeholder="Enter tenants name"
-                className="px-[30px] py-[15px] font-semibold text-sm  border bg-white "
-              />
-            </Form.Item>
-            <Form.Item label="Address" name="address">
-              <Input
-                type="text"
-                placeholder="Enter tenants address"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
-              />
-            </Form.Item>
-            <Form.Item label="Phone Number" name="phone">
-              <Input
-                type="text"
-                placeholder="Enter tenants phone number"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
-              />
-            </Form.Item>
-            <Form.Item label="Type" name="type">
-              <Input
-                type="text"
-                placeholder="Enter type"
-                className="px-[30px] py-[15px] font-semibold text-sm bg-white"
-              />
-            </Form.Item>
-
-            <div className="  mt-[20px] text-[28px] font-semibold w-full ">
+            <Dragger {...props}>
+              <div className="flex justify-center">
+                <p className="ant-upload-drag-icon bg-[#F1EEFF] h-[80px] w-[80px] rounded-full flex items-center justify-center">
+                  <Image
+                    src="/import.png"
+                    height={50}
+                    width={50}
+                    alt="import"
+                    className="h-[44px] w-[44px]"
+                  />
+                </p>
+              </div>
+              <p className="ant-upload-text !text-2xl !font-medium">
+                <span className="!text-primary">
+                  Select an Excel file to Upload
+                </span>{" "}
+                or drag and drop
+              </p>
+              <p className="ant-upload-hint !text-2xl !text-[#030303]/40">
+                (Max. File size: 25 MB)
+              </p>
+            </Dragger>
+            <div className="flex gap-[30px] items-center justify-between  mt-[20px] text-[28px] font-semibold w-full ">
               <button
-                onClick={showTenantModal}
-                className="w-full py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center gap-[13px]"
+                onClick={showRepairmanFileModal}
+                className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl font-semibold  w-full "
               >
-                <FaPlus />
-                Add Repairman
+                Discard
+              </button>
+              <button
+                onClick={showRepairmanFileModal}
+                className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold  w-full "
+              >
+                Import Repairman
               </button>
             </div>
           </Form>
