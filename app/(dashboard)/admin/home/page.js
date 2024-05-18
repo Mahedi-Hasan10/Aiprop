@@ -131,15 +131,14 @@ const AdminDashboard = () => {
                 </h3>
                 <Select
                   variant="borderless"
-                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl !w-[150px]"
-                  style={{}}
-                  placeholder="Monthly"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] placeholder:!text-[#030303] !text-4xl !w-[150px]"
+                  defaultValue="monthly"
                   options={[
                     {
                       value: "monthly",
                       label: (
                         <div>
-                          <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                          <span className="flex gap-2 group items-center hover:text-[#7655FA] font-semibold">
                             Monthly{" "}
                             <Image
                               src="/check.png"
@@ -155,7 +154,7 @@ const AdminDashboard = () => {
                     {
                       value: "annual",
                       label: (
-                        <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                        <span className="flex gap-2 group items-center hover:text-[#7655FA] font-semibold">
                           Annual{" "}
                           <Image
                             src="/check.png"
@@ -222,15 +221,14 @@ const AdminDashboard = () => {
                 </h3>
                 <Select
                   variant="borderless"
-                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl !w-[150px]"
-                  style={{}}
-                  placeholder="Monthly"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] placeholder:!text-[#030303] !text-4xl !w-[150px]"
+                  defaultValue="monthly"
                   options={[
                     {
                       value: "monthly",
                       label: (
                         <div>
-                          <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                          <span className="flex gap-2 group items-center hover:text-[#7655FA] font-semibold">
                             Monthly{" "}
                             <Image
                               src="/check.png"
@@ -246,7 +244,7 @@ const AdminDashboard = () => {
                     {
                       value: "annual",
                       label: (
-                        <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                        <span className="flex gap-2 group items-center hover:text-[#7655FA] font-semibold">
                           Annual{" "}
                           <Image
                             src="/check.png"
@@ -269,8 +267,8 @@ const AdminDashboard = () => {
         </div>
 
         <div className="px-[10px] 2xl:w-[30%] xl:w-[40%] pb-[21px] pt-[30px] bg-white rounded-md shadow relative ">
-          <div className="flex gap-4 justify-between mb-3 relative  ">
-            <div className="flex gap-3 ">
+          <div className="flex gap-4 items-center justify-between mb-[30px] relative  ">
+            <div className="flex items-center gap-3 ">
               <Image
                 src="/images/call.png"
                 height={200}
@@ -278,21 +276,20 @@ const AdminDashboard = () => {
                 className="h-[44px] w-[44px] object-fill"
                 alt="call"
               />
-              <h3 className="md:text-[25px] text-xl font-semibold text-[#030303]  mb-[30px]">
+              <h3 className="md:text-[25px] text-xl font-semibold text-[#030303] ">
                 Tenant calls
               </h3>
             </div>
             <Select
               variant="borderless"
-              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl !w-[150px]"
-              style={{}}
-              placeholder="Monthly"
+              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] placeholder:!text-[#030303] !text-4xl !w-[150px]"
+              defaultValue="monthly"
               options={[
                 {
                   value: "monthly",
                   label: (
                     <div>
-                      <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                      <span className="flex gap-2 group items-center hover:text-[#7655FA] font-semibold">
                         Monthly{" "}
                         <Image
                           src="/check.png"
@@ -308,7 +305,7 @@ const AdminDashboard = () => {
                 {
                   value: "annual",
                   label: (
-                    <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                    <span className="flex gap-2 group items-center hover:text-[#7655FA] font-semibold">
                       Annual{" "}
                       <Image
                         src="/check.png"
