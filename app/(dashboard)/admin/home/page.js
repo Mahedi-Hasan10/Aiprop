@@ -131,17 +131,41 @@ const AdminDashboard = () => {
                 </h3>
                 <Select
                   variant="borderless"
-                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
-                  defaultValue="monthly"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl !w-[150px]"
                   style={{}}
+                  placeholder="Monthly"
                   options={[
                     {
                       value: "monthly",
-                      label: "Monthly",
+                      label: (
+                        <div>
+                          <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                            Monthly{" "}
+                            <Image
+                              src="/check.png"
+                              height={20}
+                              width={20}
+                              className="h-[10px] w-[14px] hidden group-hover:flex duration-500"
+                              alt="check"
+                            />
+                          </span>
+                        </div>
+                      ),
                     },
                     {
                       value: "annual",
-                      label: "Annual",
+                      label: (
+                        <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                          Annual{" "}
+                          <Image
+                            src="/check.png"
+                            height={20}
+                            width={20}
+                            className="h-[10px] w-[14px] hidden group-hover:flex duration-500"
+                            alt="check"
+                          />
+                        </span>
+                      ),
                     },
                   ]}
                 />
@@ -198,17 +222,41 @@ const AdminDashboard = () => {
                 </h3>
                 <Select
                   variant="borderless"
-                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
-                  defaultValue="monthly"
+                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl !w-[150px]"
                   style={{}}
+                  placeholder="Monthly"
                   options={[
                     {
                       value: "monthly",
-                      label: "Monthly",
+                      label: (
+                        <div>
+                          <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                            Monthly{" "}
+                            <Image
+                              src="/check.png"
+                              height={20}
+                              width={20}
+                              className="h-[10px] w-[14px] hidden group-hover:flex duration-500"
+                              alt="check"
+                            />
+                          </span>
+                        </div>
+                      ),
                     },
                     {
                       value: "annual",
-                      label: "Annual",
+                      label: (
+                        <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                          Annual{" "}
+                          <Image
+                            src="/check.png"
+                            height={20}
+                            width={20}
+                            className="h-[10px] w-[14px] hidden group-hover:flex duration-500"
+                            alt="check"
+                          />
+                        </span>
+                      ),
                     },
                   ]}
                 />
@@ -236,17 +284,41 @@ const AdminDashboard = () => {
             </div>
             <Select
               variant="borderless"
-              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl w-[130px]"
-              defaultValue="monthly"
+              className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] !text-4xl !w-[150px]"
               style={{}}
+              placeholder="Monthly"
               options={[
                 {
                   value: "monthly",
-                  label: "Monthly",
+                  label: (
+                    <div>
+                      <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                        Monthly{" "}
+                        <Image
+                          src="/check.png"
+                          height={20}
+                          width={20}
+                          className="h-[10px] w-[14px] hidden group-hover:flex duration-500"
+                          alt="check"
+                        />
+                      </span>
+                    </div>
+                  ),
                 },
                 {
                   value: "annual",
-                  label: "Annual",
+                  label: (
+                    <span className="flex gap-2 group items-center hover:text-[#7655FA]">
+                      Annual{" "}
+                      <Image
+                        src="/check.png"
+                        height={20}
+                        width={20}
+                        className="h-[10px] w-[14px] hidden group-hover:flex duration-500"
+                        alt="check"
+                      />
+                    </span>
+                  ),
                 },
               ]}
             />

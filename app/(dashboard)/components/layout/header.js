@@ -1,4 +1,4 @@
-"use client";
+//
 import {
   message,
   Dropdown,
@@ -14,7 +14,7 @@ import { FaBars, FaCross } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoNotifications } from "react-icons/io5";
 import Button2 from "../common/button2";
 import { RxCross2 } from "react-icons/rx";
@@ -28,7 +28,6 @@ import { FiClock } from "react-icons/fi";
 import { TbArrowNarrowRight } from "react-icons/tb";
 
 const Header = ({ title }) => {
-  const [form] = Form.useForm();
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
   const pathName = usePathname().split("/");
@@ -38,13 +37,11 @@ const Header = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const { user, error, isLoading } = useUser();
-  console.log("🚀 ~ Header ~ user:", user);
   const [Notification, setNotification] = useState(false);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   const router = useRouter();
-
   const showModal = () => {
     setOpen(!open);
   };
@@ -409,7 +406,6 @@ const Header = ({ title }) => {
             <h3 className="lg:text-[26px] text-base font-medium">John Doe</h3>
           </div>
           <Form
-            form={form}
             classname="profile"
             layout="vertical"
             className="w-full"
@@ -421,12 +417,14 @@ const Header = ({ title }) => {
               <Input
                 type="text"
                 placeholder="Enter your name"
+                defaultValue="Amir Sheikh"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl   bg-white font-medium "
               />
             </Form.Item>
             <Form.Item label="Email" name="email">
               <Input
                 type="email"
+                defaultValue="johnsmith@gmail.com"
                 placeholder="Enter your email"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white font-medium"
               />

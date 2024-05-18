@@ -1,63 +1,47 @@
-import { NextResponse } from "next/server";
-import fetch from "node-fetch";
+// pages/api/updateUser.js
+import { getSession } from "@auth0/nextjs-auth0";
+import axios from "axios";
 
-export async function PATCH(req) {
-  const { id, data } = await req.json();
-
-  if (!id || !data) {
-    return NextResponse.json(
-      { message: "User ID and data are required" },
-      { status: 400 }
-    );
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const token = await getAccessToken();
+  const session = getSession(req, res);
+  if (!session || !session.user) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const { user } = session;
+  const { name, email, password } = req.body;
 
   try {
-    const response = await fetch(
-      `https://${process.env.AUTH0_DOMAIN}/api/v2/users/${id}`,
+    const tokenResponse = await axios.post(
+      `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
       {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      }
-    );
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return NextResponse.json(errorData, { status: response.status });
-    }
-
-    const updatedUser = await response.json();
-    return NextResponse.json(updatedUser, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Internal server error", error: error.message },
-      { status: 500 }
-    );
-  }
-}
-
-async function getAccessToken() {
-  const response = await fetch(
-    `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
         client_id: process.env.AUTH0_CLIENT_ID,
         client_secret: process.env.AUTH0_CLIENT_SECRET,
         audience: `https://${process.env.AUTH0_DOMAIN}/api/v2/`,
         grant_type: "client_credentials",
-      }),
-    }
-  );
+      }
+    );
 
-  const data = await response.json();
-  return data.access_token;
+    const token = tokenResponse.data.access_token;
+
+    await axios.patch(
+      `https://${process.env.AUTH0_DOMAIN}/api/v2/users/${user.sub}`,
+      { name, email, password },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.status(200).json({ message: "User updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 }
