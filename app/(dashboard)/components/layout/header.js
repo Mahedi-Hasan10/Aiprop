@@ -48,13 +48,20 @@ const Header = ({ title }) => {
   const showProfileModal = () => {
     setOpenProfile(!openProfile);
   };
-  const handleLogout = () => {
-    router.push("/api/auth/logout");
-    message.success("Logged out successfully");
-    showModal();
-    router.push("/api/auth/login");
-  };
+  const handleLogout = async () => {
+    try {
+      await router.push("/api/auth/logout");
 
+      message.success("Logged out successfully");
+
+      showModal();
+
+      await router.push("/api/auth/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      message.error("Failed to log out. Please try again.");
+    }
+  };
   const items = [
     {
       label: "Setting",
