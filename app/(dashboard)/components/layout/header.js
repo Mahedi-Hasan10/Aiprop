@@ -51,11 +51,8 @@ const Header = ({ title }) => {
   const handleLogout = async () => {
     try {
       await router.push("/api/auth/logout");
-
       message.success("Logged out successfully");
-
       showModal();
-
       await router.push("/api/auth/login");
     } catch (error) {
       console.error("Logout failed:", error);
