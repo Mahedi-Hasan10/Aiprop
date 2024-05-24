@@ -37,6 +37,7 @@ const Header = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const { user, error, isLoading } = useUser();
+  console.log("🚀 ~ Header ~ user:", user);
   const [Notification, setNotification] = useState(false);
 
   if (isLoading) return <div>Loading...</div>;
@@ -48,12 +49,12 @@ const Header = ({ title }) => {
   const showProfileModal = () => {
     setOpenProfile(!openProfile);
   };
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      await router.push("/api/auth/logout");
+      router.push("/api/auth/logout");
       message.success("Logged out successfully");
       showModal();
-      await router.push("/api/auth/login");
+      router.push("/api/auth/login");
     } catch (error) {
       console.error("Logout failed:", error);
       message.error("Failed to log out. Please try again.");

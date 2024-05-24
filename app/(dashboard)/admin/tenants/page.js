@@ -26,6 +26,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { useAction, useFetch } from "../../helpers/hooks";
+import { fetchTenant, postTenant } from "../../helpers/backend";
 
 const props = {
   name: "file",
@@ -54,7 +56,8 @@ const Page = () => {
   const [openTenant, setTenantModel] = useState(false);
   const [openTenantFile, setTenantFileModel] = useState(false);
   const [edit, setEdit] = useState(false);
-
+  const [tenants, getTenant] = useFetch(fetchTenant);
+  console.log("🚀 ~ Page ~ tenants:", tenants);
   const onEditHandle = () => {
     setEdit(true);
     showTenantModal();
@@ -281,9 +284,12 @@ const Page = () => {
             form={form}
             layout="vertical"
             className="w-full"
-            onFinish={() => {
-              form.resetFields();
-              message.success("Added successfully");
+            onFinish={(values) => {
+              useAction(postTenant, values, () => {
+                getTenant();
+                form.resetFields();
+                setTenantModel(false);
+              });
             }}
           >
             <Form.Item label="Name" name="name">
@@ -300,7 +306,7 @@ const Page = () => {
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
-            <Form.Item label="Phone Number" name="phone">
+            <Form.Item label="Phone Number" name="phoneNumber">
               <Input
                 type="text"
                 placeholder="Enter tenants phone number"
@@ -316,10 +322,7 @@ const Page = () => {
             </Form.Item>
 
             <div className="  mt-[20px] text-[28px] font-semibold w-full ">
-              <button
-                onClick={showTenantModal}
-                className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]"
-              >
+              <button className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]">
                 <FaPlus />
                 {edit ? "Update Tenant" : "Add Tenant"}
               </button>

@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    backend_url: "",
+    backend_url: "https://app.aipropertyflow.com/api",
 
     //firebase auth
   },

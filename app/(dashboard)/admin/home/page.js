@@ -6,6 +6,8 @@ import { Table } from "antd";
 import { DataSource, DataSource2 } from "../../components/data";
 import dynamic from "next/dynamic";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useFetch } from "../../helpers/hooks.js";
+import { fetchTenant } from "../../helpers/backend.js";
 
 const PieChart = dynamic(() => import("../../components/admin/pieChart.js"), {
   ssr: false,
@@ -106,6 +108,7 @@ const columns2 = [
 ];
 
 const AdminDashboard = () => {
+  const [data, getData] = useFetch(fetchTenant);
   const { user, error, isLoading } = useUser();
 
   return (
