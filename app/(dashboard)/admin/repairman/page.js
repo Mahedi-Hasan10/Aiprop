@@ -27,7 +27,15 @@ import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useAction, useActionConfirm, useFetch } from "../../helpers/hooks";
-import { delRepairmen, delTenant, fetchRepairmen, postRepairmen, postTenant, updateRepairmen, updateTenant } from "../../helpers/backend";
+import {
+  delRepairmen,
+  delTenant,
+  fetchRepairmen,
+  postRepairmen,
+  postTenant,
+  updateRepairmen,
+  updateTenant,
+} from "../../helpers/backend";
 
 const props = {
   name: "file",
@@ -57,13 +65,13 @@ const Page = () => {
   const [openTenantFile, setTenantFileModel] = useState(false);
   const [edit, setEdit] = useState(false);
   const [tenants, getTenant] = useFetch(fetchRepairmen);
-  const [selectTenant, setSelectTenant] = useState()
+  const [selectTenant, setSelectTenant] = useState();
   const onEditHandle = (record) => {
     setEdit(true);
-    setSelectTenant(record)
+    setSelectTenant(record);
     showTenantModal();
   };
- 
+
   const showTenantModal = () => {
     setTenantModel(!openTenant);
   };
@@ -84,25 +92,27 @@ const Page = () => {
   };
   const handleDelete = async (record) => {
     try {
-      await useActionConfirm(delRepairmen, {
-        ClientID: record?.ClientID,
-        RepairmanID: record?.RepairmanID,
-      }, () => {
-        getTenant();
-        message.success("Record deleted successfully");
-      });
+      await useActionConfirm(
+        delRepairmen,
+        {
+          ClientID: record?.ClientID,
+          RepairmanID: record?.RepairmanID,
+        },
+        () => {
+          getTenant();
+        }
+      );
     } catch (error) {
       console.error("Error deleting record:", error);
       message.error("Failed to delete record");
     }
   };
 
-
   const ActionMenu = ({ record }) => (
     <Menu>
       <Menu.Item key="edit">
         <button
-          onClick={()=>onEditHandle(record)}
+          onClick={() => onEditHandle(record)}
           className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"
         >
           {" "}
@@ -111,14 +121,14 @@ const Page = () => {
       </Menu.Item>
       <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
         <button
-          onClick={()=>handleDelete(record)}
+          onClick={() => handleDelete(record)}
           className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"
         >
           {" "}
           <RiDeleteBin6Fill size={24} /> Delete
         </button>
       </Menu.Item>
-    </Menu>   
+    </Menu>
   );
   const columns = [
     {
@@ -162,7 +172,6 @@ const Page = () => {
     },
   ];
 
-  
   const filteredDataSource = tenants?.filter((item) => {
     const isTextMatch = Object.keys(item).some(
       (key) =>
@@ -179,7 +188,7 @@ const Page = () => {
     return isTextMatch && isDateMatch;
   });
 
-  // for edit only 
+  // for edit only
   useEffect(() => {
     if (edit && selectTenant) {
       form.setFieldsValue({
@@ -191,7 +200,6 @@ const Page = () => {
       });
     }
   }, [edit, selectTenant, form]);
-  
 
   return (
     <div className="">
@@ -269,19 +277,18 @@ const Page = () => {
         </div>
         <Table
           className="overflow-x-scroll"
-          dataSource={filteredDataSource}        
+          dataSource={filteredDataSource}
           columns={columns}
           pagination={{
-            pageSize:10,
+            pageSize: 10,
             position: ["bottomCenter"],
-          
           }}
         />
         {/* form=== */}
         <Modal open={openTenant}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
             <h3 className=" font-medium text-[#030303]">
-              {edit ? "Update tenants" : "Add new tenants"}
+              {edit ? "Update Repairmen" : "Add new Repairmen"}
             </h3>
             <RxCross2 className="cursor-pointer" onClick={hideTenantModal} />
           </div>
@@ -290,18 +297,22 @@ const Page = () => {
             layout="vertical"
             className="w-full"
             onFinish={(values) => {
-              useAction( edit ? updateRepairmen : postRepairmen, 
-                { name: values.name,
+              useAction(
+                edit ? updateRepairmen : postRepairmen,
+                {
+                  name: values.name,
                   repairmanType: values.repairmanType,
                   companyName: values.companyName,
                   phoneNumber: values.phoneNumber,
-                  RepairmanID: edit ? selectTenant?.RepairmanID : null}
-                , () => {
-                setEdit(false)
-                getTenant();
-                form.resetFields();
-                setTenantModel(false);
-              });
+                  RepairmanID: edit ? selectTenant?.RepairmanID : null,
+                },
+                () => {
+                  setEdit(false);
+                  getTenant();
+                  form.resetFields();
+                  setTenantModel(false);
+                }
+              );
             }}
           >
             <Form.Item label="Name" name="name">

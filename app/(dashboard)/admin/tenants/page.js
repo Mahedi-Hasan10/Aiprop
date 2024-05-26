@@ -25,8 +25,12 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useAction, useActionConfirm, useFetch } from "../../helpers/hooks";
-import {  delTenant, fetchTenant, postTenant, updateTenant } from "../../helpers/backend";
-
+import {
+  delTenant,
+  fetchTenant,
+  postTenant,
+  updateTenant,
+} from "../../helpers/backend";
 
 const props = {
   name: "file",
@@ -57,10 +61,10 @@ const Page = () => {
   const [edit, setEdit] = useState(false);
   const [tenants, getTenant] = useFetch(fetchTenant);
 
-  const [selectTenant, setSelectTenant] = useState()
+  const [selectTenant, setSelectTenant] = useState();
   const onEditHandle = (record) => {
     setEdit(true);
-    setSelectTenant(record)
+    setSelectTenant(record);
     showTenantModal();
   };
 
@@ -85,13 +89,16 @@ const Page = () => {
 
   const handleDelete = async (record) => {
     try {
-      await useActionConfirm(delTenant, {
-        ClientID: record?.ClientID,
-        TenantID: record?.TenantID,
-      }, () => {
-        getTenant();
-        message.success("Record deleted successfully");
-      });
+      await useActionConfirm(
+        delTenant,
+        {
+          ClientID: record?.ClientID,
+          TenantID: record?.TenantID,
+        },
+        () => {
+          getTenant();
+        }
+      );
     } catch (error) {
       console.error("Error deleting record:", error);
       message.error("Failed to delete record");
@@ -162,7 +169,6 @@ const Page = () => {
     },
   ];
 
-
   const filteredDataSource = tenants?.filter((item) => {
     const isTextMatch = Object.keys(item).some(
       (key) =>
@@ -179,7 +185,7 @@ const Page = () => {
     return isTextMatch && isDateMatch;
   });
 
-  // for edit only 
+  // for edit only
   useEffect(() => {
     if (edit && selectTenant) {
       form.setFieldsValue({
@@ -190,7 +196,6 @@ const Page = () => {
       });
     }
   }, [edit, selectTenant, form]);
-
 
   return (
     <div className="">
@@ -269,12 +274,10 @@ const Page = () => {
         <Table
           className="overflow-x-scroll"
           dataSource={filteredDataSource}
-
           columns={columns}
           pagination={{
             pageSize: 10,
             position: ["bottomCenter"],
-
           }}
         />
         {/* form=== */}
@@ -290,20 +293,22 @@ const Page = () => {
             layout="vertical"
             className="w-full"
             onFinish={(values) => {
-              useAction(edit ? updateTenant : postTenant,
+              useAction(
+                edit ? updateTenant : postTenant,
                 {
                   name: values.Name,
                   address: values.Address,
                   phoneNumber: values.PhoneNumber,
                   rent: values.Rent,
-                  TenantID: edit ? selectTenant?.TenantID : null
-                }
-                , () => {
-                  setEdit(false)
+                  TenantID: edit ? selectTenant?.TenantID : null,
+                },
+                () => {
+                  setEdit(false);
                   getTenant();
                   form.resetFields();
                   setTenantModel(false);
-                });
+                }
+              );
             }}
           >
             <Form.Item label="Name" name="Name">
