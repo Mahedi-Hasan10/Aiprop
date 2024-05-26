@@ -26,6 +26,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { useAction, useActionConfirm, useFetch } from "../../helpers/hooks";
+import { delRepairmen, delTenant, fetchRepairmen, postRepairmen, postTenant, updateRepairmen, updateTenant } from "../../helpers/backend";
 
 const props = {
   name: "file",
@@ -51,34 +53,27 @@ const Page = () => {
   const [form] = Form.useForm();
   const [searchText, setSearchText] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
-  const [openRepairman, setRepairmanModel] = useState(false);
-  const [openRepairmanFile, setRepairmanFileModel] = useState(false);
+  const [openTenant, setTenantModel] = useState(false);
+  const [openTenantFile, setTenantFileModel] = useState(false);
   const [edit, setEdit] = useState(false);
-
-  const onEditHandle = () => {
+  const [tenants, getTenant] = useFetch(fetchRepairmen);
+  const [selectTenant, setSelectTenant] = useState()
+  const onEditHandle = (record) => {
     setEdit(true);
-    showRepairmanModal();
+    setSelectTenant(record)
+    showTenantModal();
   };
-  useEffect(() => {
-    if (edit) {
-      form.setFieldsValue({
-        name: "John Doe",
-        address: "Texas City",
-        phone: "+880454544",
-        rent: "1000",
-      });
-    }
-  }, [edit, form]);
-  const showRepairmanModal = () => {
-    setRepairmanModel(!openRepairman);
+ 
+  const showTenantModal = () => {
+    setTenantModel(!openTenant);
   };
-  const hideRepairmanModal = () => {
-    setRepairmanModel(!openRepairman);
+  const hideTenantModal = () => {
+    setTenantModel(!openTenant);
     setEdit(false);
     form.resetFields();
   };
-  const showRepairmanFileModal = () => {
-    setRepairmanFileModel(!openRepairmanFile);
+  const showTenantFileModal = () => {
+    setTenantFileModel(!openTenantFile);
   };
   const handleSearch = (value) => {
     setSearchText(value.toLowerCase());
@@ -87,31 +82,27 @@ const Page = () => {
   const handleDateChange = (dates) => {
     setSelectedDates(dates);
   };
-
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
-    });
+  const handleDelete = async (record) => {
+    try {
+      await useActionConfirm(delRepairmen, {
+        ClientID: record?.ClientID,
+        RepairmanID: record?.RepairmanID,
+      }, () => {
+        getTenant();
+        message.success("Record deleted successfully");
+      });
+    } catch (error) {
+      console.error("Error deleting record:", error);
+      message.error("Failed to delete record");
+    }
   };
+
+
   const ActionMenu = ({ record }) => (
     <Menu>
       <Menu.Item key="edit">
         <button
-          onClick={onEditHandle}
+          onClick={()=>onEditHandle(record)}
           className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"
         >
           {" "}
@@ -120,40 +111,40 @@ const Page = () => {
       </Menu.Item>
       <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
         <button
-          onClick={handleDelete}
+          onClick={()=>handleDelete(record)}
           className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"
         >
           {" "}
           <RiDeleteBin6Fill size={24} /> Delete
         </button>
       </Menu.Item>
-    </Menu>
+    </Menu>   
   );
   const columns = [
     {
       title: "SL",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "RepairmanID",
+      key: "RepairmanID",
     },
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "companyName ",
+      dataIndex: "Name",
+      key: "Name",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Company Name ",
+      dataIndex: "CompanyName",
+      key: "CompanyName",
     },
     {
       title: "Phone Number",
-      dataIndex: "phone",
-      key: "phone",
+      dataIndex: "PhoneNumber",
+      key: "PhoneNumber",
     },
     {
-      title: "Rent",
-      dataIndex: "rent",
-      key: "rent",
+      title: "Repairman Type",
+      dataIndex: "RepairmanType",
+      key: "RepairmanType",
     },
     {
       title: "Action",
@@ -171,7 +162,8 @@ const Page = () => {
     },
   ];
 
-  const filteredDataSource = dataSource3.filter((item) => {
+  
+  const filteredDataSource = tenants?.filter((item) => {
     const isTextMatch = Object.keys(item).some(
       (key) =>
         item[key] && item[key].toString().toLowerCase().includes(searchText)
@@ -187,6 +179,20 @@ const Page = () => {
     return isTextMatch && isDateMatch;
   });
 
+  // for edit only 
+  useEffect(() => {
+    if (edit && selectTenant) {
+      form.setFieldsValue({
+        name: selectTenant?.Name,
+        companyName: selectTenant?.CompanyName,
+        phoneNumber: selectTenant?.PhoneNumber,
+        repairmanType: selectTenant?.RepairmanType,
+        RepairmanID: selectTenant?.RepairmanID,
+      });
+    }
+  }, [edit, selectTenant, form]);
+  
+
   return (
     <div className="">
       <div className="px-[30px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full">
@@ -196,7 +202,7 @@ const Page = () => {
           </h3>
           <div className="flex md:flex-row flex-col md:items-center gap-5 mb-[30px]">
             <button
-              onClick={showRepairmanFileModal}
+              onClick={showTenantFileModal}
               className="py-[10px] px-[16px]  bg-[#F1EEFF] text-primary rounded-[5px] text-xl flex items-center gap-[13px]"
             >
               <Image
@@ -209,7 +215,7 @@ const Page = () => {
               Import new list
             </button>
             <button
-              onClick={showRepairmanModal}
+              onClick={showTenantModal}
               className="py-[10px] px-[16px] justify-center bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center gap-[13px]"
             >
               <FaPlus />
@@ -263,76 +269,85 @@ const Page = () => {
         </div>
         <Table
           className="overflow-x-scroll"
-          dataSource={filteredDataSource}
+          dataSource={filteredDataSource}        
           columns={columns}
           pagination={{
+            pageSize:10,
             position: ["bottomCenter"],
+          
           }}
         />
         {/* form=== */}
-        <Modal open={openRepairman}>
+        <Modal open={openTenant}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
             <h3 className=" font-medium text-[#030303]">
-              {edit ? "Update Repairmans" : "Add new Repairmans"}
+              {edit ? "Update tenants" : "Add new tenants"}
             </h3>
-            <RxCross2 className="cursor-pointer" onClick={hideRepairmanModal} />
+            <RxCross2 className="cursor-pointer" onClick={hideTenantModal} />
           </div>
           <Form
             form={form}
             layout="vertical"
             className="w-full"
-            onFinish={() => {
-              form.resetFields();
-              message.success("Added successfully");
+            onFinish={(values) => {
+              useAction( edit ? updateRepairmen : postRepairmen, 
+                { name: values.name,
+                  repairmanType: values.repairmanType,
+                  companyName: values.companyName,
+                  phoneNumber: values.phoneNumber,
+                  RepairmanID: edit ? selectTenant?.RepairmanID : null}
+                , () => {
+                setEdit(false)
+                getTenant();
+                form.resetFields();
+                setTenantModel(false);
+              });
             }}
           >
             <Form.Item label="Name" name="name">
               <Input
                 type="text"
-                placeholder="Enter Repairmans name"
+                placeholder="Enter Repairmen name"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white  "
               />
             </Form.Item>
-            <Form.Item label="Address" name="address">
+            <Form.Item label="Company Name" name="companyName">
               <Input
                 type="text"
-                placeholder="Enter Repairmans address"
+                placeholder="Enter company Name "
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
-            <Form.Item label="Phone Number" name="phone">
+            <Form.Item label="Phone Number" name="phoneNumber">
               <Input
                 type="text"
-                placeholder="Enter Repairmans phone number"
+                placeholder="Enter repairmen phone number"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
-            <Form.Item label="Rent" name="rent">
+            <Form.Item label="Repairmen Type" name="repairmanType">
               <Input
                 type="text"
-                placeholder="Enter rent"
+                placeholder="Enter  repairmen type"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
 
             <div className="  mt-[20px] text-[28px] font-semibold w-full ">
-              <button
-                onClick={showRepairmanModal}
-                className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]"
-              >
+              <button className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold flex items-center justify-center w-full gap-[13px]">
                 <FaPlus />
-                {edit ? "Update Repairman" : "Add Repairman"}
+                {edit ? "Update Repairmen" : "Add Repairmen"}
               </button>
             </div>
           </Form>
         </Modal>
         {/* file */}
-        <Modal open={openRepairmanFile}>
+        <Modal open={openTenantFile}>
           <div className="flex justify-between mb-[40px] text-[26px] ">
             <h3 className=" font-medium text-[#030303]">Import new list</h3>
             <RxCross2
               className="cursor-pointer"
-              onClick={showRepairmanFileModal}
+              onClick={showTenantFileModal}
             />
           </div>
           <Form
@@ -366,16 +381,16 @@ const Page = () => {
             </Dragger>
             <div className="flex gap-[30px] items-center justify-between  mt-[20px] text-[28px] font-semibold w-full ">
               <button
-                onClick={showRepairmanFileModal}
+                onClick={showTenantFileModal}
                 className="py-[10px] px-[16px] bg-[#F1EEFF] text-primary rounded-[5px] text-xl font-semibold  w-full "
               >
                 Discard
               </button>
               <button
-                onClick={showRepairmanFileModal}
+                onClick={showTenantFileModal}
                 className="py-[10px] px-[16px] bg-primary text-white rounded-[5px] text-xl font-semibold  w-full "
               >
-                Import Repairman
+                Import Tenant
               </button>
             </div>
           </Form>

@@ -7,7 +7,8 @@ import { DataSource, DataSource2 } from "../../components/data";
 import dynamic from "next/dynamic";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useFetch } from "../../helpers/hooks.js";
-import { fetchTenant } from "../../helpers/backend.js";
+import { fetchTcalls, fetchWorkers } from "../../helpers/backend.js";
+
 
 const PieChart = dynamic(() => import("../../components/admin/pieChart.js"), {
   ssr: false,
@@ -17,99 +18,105 @@ const BarChart = dynamic(() => import("../../components/admin/barChart.js"), {
   ssr: false,
 });
 
-const columns = [
-  {
-    title: "SL",
-    dataIndex: "id",
-    key: "id",
-  },
-  {
-    title: "Tenant Name",
-    dataIndex: "tenantName",
-    key: "tenantName",
-  },
-  {
-    title: "Company Name",
-    dataIndex: "companyName",
-    key: "companyName",
-  },
-  {
-    title: "Issue",
-    dataIndex: "issue",
-    key: "issue",
-  },
 
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-    render: (text) => {
-      let textColor;
-      let bgColor;
-      switch (text) {
-        case "Waiting":
-          textColor = "#030303";
-          bgColor = "rgba(157, 157, 157, 0.3)";
-          break;
-        case "Pending":
-          textColor = "#030303";
-          bgColor = "#F7F7B2";
-          break;
-        case "Contacted":
-          textColor = "#7655FA";
-          bgColor = "#F1EEFF";
-          break;
-        default:
-          textColor = "#030303";
-          bgColor = "#FFFFFF";
-      }
-      return (
-        <div
-          style={{ backgroundColor: bgColor, color: textColor }}
-          className="text-center w-full px-[10px] py-[5px] rounded-[5px]"
-        >
-          {text}
-        </div>
-      );
-    },
-  },
-  {
-    title: "Date",
-    dataIndex: "date",
-    key: "date",
-  },
-  {
-    title: "Time",
-    dataIndex: "time",
-    key: "time",
-  },
-];
 
-const columns2 = [
-  {
-    title: "SL",
-    dataIndex: "id",
-    key: "id",
-  },
-  {
-    title: "Customer",
-    dataIndex: "tenantName",
-    key: "tenantName",
-  },
 
-  {
-    title: "Time",
-    dataIndex: "time",
-    key: "time",
-    render: (text) => {
-      return <div className="text-[#7655FA]">{text}</div>;
-    },
-  },
-];
 
 const AdminDashboard = () => {
-  const [data, getData] = useFetch(fetchTenant);
+  const [data, getData] = useFetch(fetchWorkers);
+  const [tcalls, getTcalls] = useFetch(fetchTcalls,{timeframe: '1year'});
+  console.log("🚀 ~ AdminDashboard ~ tcalls:", tcalls)
+
   const { user, error, isLoading } = useUser();
+
+  const columns = [
+    {
+      title: "SL",
+      dataIndex: "WorkOrderID",
+      key: "WorkOrderID",
+      render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
+    },
+    {
+      title: "Tenant Name",
+      dataIndex: "TenantName",
+      key: "TenantName",
+      render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
+    },
+    {
+      title: "Company Name",
+      dataIndex: "CompanyName",
+      key: "CompanyName",
+      render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
+    },
+    {
+      title: "Issue",
+      dataIndex: "Issue",
+      key: "Issue",
+      render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
+    },
+    {
+      title: "Start Timestamp",
+      dataIndex: "StartTimestamp",
+      key: "StartTimestamp",
+      render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
+    },
+  
+    {
+      title: "Status",
+      dataIndex: "Status",
+      key: "Status",
+      render: (text) => {
+        let textColor;
+        let bgColor;
+        switch (text) {
+          case "Waiting":
+            textColor = "#030303";
+            bgColor = "rgba(157, 157, 157, 0.3)";
+            break;
+          case "Pending":
+            textColor = "#030303";
+            bgColor = "#F7F7B2";
+            break;
+          case "Contacted":
+            textColor = "#7655FA";
+            bgColor = "#F1EEFF";
+            break;
+          default:
+            textColor = "#030303";
+            bgColor = "#FFFFFF";
+        }
+        return (
+          <div
+            style={{ backgroundColor: bgColor, color: textColor }}
+            className="text-center w-full px-[10px] py-[5px] rounded-[5px]"
+          >
+            {text}
+          </div>
+        );
+      },
+    },
+    
+  ];
+
+  const columns2 = [
+    {
+      title: "SL",
+      dataIndex: "TenantID",
+      key: "TenantID",
+    },
+    {
+      title: "Tenant Name",
+      dataIndex: "TenantName",
+      key: "TenantName",
+      render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
+    },
+    {
+      title: "Call Count",
+      dataIndex: "CallCount",
+      key: "CallCount",
+    },
+   
+  ];
 
   return (
     <div className="relative">
@@ -121,8 +128,9 @@ const AdminDashboard = () => {
             </h3>
             <Table
               className="overflow-x-scroll "
-              dataSource={DataSource}
+              dataSource={data}
               columns={columns}
+              pagination={false}
             />
           </div>
 
@@ -324,10 +332,10 @@ const AdminDashboard = () => {
             />
           </div>
           <Table
-            dataSource={DataSource2}
+            dataSource={tcalls}
             columns={columns2}
             className="relative"
-            pagination={{ pageSize: 15 }}
+            pagination={false}
           />
         </div>
       </div>

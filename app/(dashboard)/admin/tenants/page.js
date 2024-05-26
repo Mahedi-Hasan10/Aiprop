@@ -19,15 +19,14 @@ import { RxCross2 } from "react-icons/rx";
 import { Modal, Form } from "antd";
 const { Search } = Input;
 const { RangePicker } = DatePicker;
-import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 const { Dragger } = Upload;
 import { IoSearchOutline } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import Swal from "sweetalert2";
-import { useAction, useFetch } from "../../helpers/hooks";
-import { fetchTenant, postTenant } from "../../helpers/backend";
+import { useAction, useActionConfirm, useFetch } from "../../helpers/hooks";
+import {  delTenant, fetchTenant, postTenant, updateTenant } from "../../helpers/backend";
+
 
 const props = {
   name: "file",
@@ -57,21 +56,14 @@ const Page = () => {
   const [openTenantFile, setTenantFileModel] = useState(false);
   const [edit, setEdit] = useState(false);
   const [tenants, getTenant] = useFetch(fetchTenant);
-  console.log("🚀 ~ Page ~ tenants:", tenants);
-  const onEditHandle = () => {
+
+  const [selectTenant, setSelectTenant] = useState()
+  const onEditHandle = (record) => {
     setEdit(true);
+    setSelectTenant(record)
     showTenantModal();
   };
-  useEffect(() => {
-    if (edit) {
-      form.setFieldsValue({
-        name: "John Doe",
-        address: "Texas City",
-        phone: "+880454544",
-        rent: "1000",
-      });
-    }
-  }, [edit, form]);
+
   const showTenantModal = () => {
     setTenantModel(!openTenant);
   };
@@ -91,30 +83,26 @@ const Page = () => {
     setSelectedDates(dates);
   };
 
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-      }
-    });
+  const handleDelete = async (record) => {
+    try {
+      await useActionConfirm(delTenant, {
+        ClientID: record?.ClientID,
+        TenantID: record?.TenantID,
+      }, () => {
+        getTenant();
+        message.success("Record deleted successfully");
+      });
+    } catch (error) {
+      console.error("Error deleting record:", error);
+      message.error("Failed to delete record");
+    }
   };
+
   const ActionMenu = ({ record }) => (
     <Menu>
       <Menu.Item key="edit">
         <button
-          onClick={onEditHandle}
+          onClick={() => onEditHandle(record)}
           className="flex text-xl font-semibold items-center gap-2 text-[#7655FA]"
         >
           {" "}
@@ -123,7 +111,7 @@ const Page = () => {
       </Menu.Item>
       <Menu.Item key="delete" className="hover:bg-red-500 hover:text-white">
         <button
-          onClick={handleDelete}
+          onClick={() => handleDelete(record)}
           className="flex text-xl font-semibold items-center gap-2 text-[#FF6868]"
         >
           {" "}
@@ -135,28 +123,28 @@ const Page = () => {
   const columns = [
     {
       title: "SL",
-      dataIndex: "id",
-      key: "id",
+      dataIndex: "TenantID",
+      key: "TenantID",
     },
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "Name",
+      key: "Name",
     },
     {
       title: "Address",
-      dataIndex: "address",
-      key: "address",
+      dataIndex: "Address",
+      key: "Address",
     },
     {
       title: "Phone Number",
-      dataIndex: "phone",
-      key: "phone",
+      dataIndex: "PhoneNumber",
+      key: "PhoneNumber",
     },
     {
       title: "Rent",
-      dataIndex: "rent",
-      key: "rent",
+      dataIndex: "Rent",
+      key: "Rent",
     },
     {
       title: "Action",
@@ -174,7 +162,8 @@ const Page = () => {
     },
   ];
 
-  const filteredDataSource = dataSource3.filter((item) => {
+
+  const filteredDataSource = tenants?.filter((item) => {
     const isTextMatch = Object.keys(item).some(
       (key) =>
         item[key] && item[key].toString().toLowerCase().includes(searchText)
@@ -189,6 +178,19 @@ const Page = () => {
 
     return isTextMatch && isDateMatch;
   });
+
+  // for edit only 
+  useEffect(() => {
+    if (edit && selectTenant) {
+      form.setFieldsValue({
+        Name: selectTenant?.Name,
+        Address: selectTenant?.Address,
+        PhoneNumber: selectTenant?.PhoneNumber,
+        Rent: selectTenant?.Rent,
+      });
+    }
+  }, [edit, selectTenant, form]);
+
 
   return (
     <div className="">
@@ -267,9 +269,12 @@ const Page = () => {
         <Table
           className="overflow-x-scroll"
           dataSource={filteredDataSource}
+
           columns={columns}
           pagination={{
+            pageSize: 10,
             position: ["bottomCenter"],
+
           }}
         />
         {/* form=== */}
@@ -285,35 +290,44 @@ const Page = () => {
             layout="vertical"
             className="w-full"
             onFinish={(values) => {
-              useAction(postTenant, values, () => {
-                getTenant();
-                form.resetFields();
-                setTenantModel(false);
-              });
+              useAction(edit ? updateTenant : postTenant,
+                {
+                  name: values.Name,
+                  address: values.Address,
+                  phoneNumber: values.PhoneNumber,
+                  rent: values.Rent,
+                  TenantID: edit ? selectTenant?.TenantID : null
+                }
+                , () => {
+                  setEdit(false)
+                  getTenant();
+                  form.resetFields();
+                  setTenantModel(false);
+                });
             }}
           >
-            <Form.Item label="Name" name="name">
+            <Form.Item label="Name" name="Name">
               <Input
                 type="text"
                 placeholder="Enter tenants name"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white  "
               />
             </Form.Item>
-            <Form.Item label="Address" name="address">
+            <Form.Item label="Address" name="Address">
               <Input
                 type="text"
                 placeholder="Enter tenants address"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
-            <Form.Item label="Phone Number" name="phoneNumber">
+            <Form.Item label="Phone Number" name="PhoneNumber">
               <Input
                 type="text"
                 placeholder="Enter tenants phone number"
                 className="px-[30px] pt-[10px] pb-[12px] text-2xl bg-white "
               />
             </Form.Item>
-            <Form.Item label="Rent" name="rent">
+            <Form.Item label="Rent" name="Rent">
               <Input
                 type="text"
                 placeholder="Enter rent"
