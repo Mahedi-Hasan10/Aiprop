@@ -25,9 +25,7 @@ const BarChart = dynamic(() => import("../../components/admin/barChart.js"), {
 const AdminDashboard = () => {
   const [data, getData] = useFetch(fetchWorkers);
   const [tcalls, getTcalls] = useFetch(fetchTcalls,{timeframe: '1year'});
-  console.log("🚀 ~ AdminDashboard ~ tcalls:", tcalls)
-
-  const { user, error, isLoading } = useUser();
+  const { user, error, isLoading } = useUser  ();
 
   const columns = [
     {

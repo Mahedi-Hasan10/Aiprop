@@ -1,4 +1,7 @@
 import { del, get, post, put } from "./api";
+
+//auth
+export const register = (data) => post("/register", data); 
 //Dashboard
 export const fetchWorkers = (data) => get("/workorders/active", data);
 export const fetchTcalls = (data) => get("/tenantcalls/recent", data);

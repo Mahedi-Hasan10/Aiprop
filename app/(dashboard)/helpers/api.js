@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // Apply base URL for axios
-const API_URL = "https://app.aipropertyflow.com/api";
+// const API_URL = "https://app.aipropertyflow.com/api";
+const API_URL = "http://192.168.0.161:8002";
 
 const axiosApi = axios.create({
   baseURL: API_URL,

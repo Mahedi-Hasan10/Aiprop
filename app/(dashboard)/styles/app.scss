@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  @apply max-w-[1542px];
+  @apply max-w-[1320px] mx-auto;
 }
 .sidebar {
   @apply w-0 overflow-y-scroll md:w-[308px] h-full fixed left-0 z-10 top-0 bg-[#212121] transition-all duration-300;
@@ -308,6 +308,7 @@ body {
 .shadows{
   box-shadow: 1px 1px 5px 0.3px rgb(199, 197, 197) ;
 }
+
 
 
 

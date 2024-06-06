@@ -66,6 +66,7 @@ const Page = () => {
   const [edit, setEdit] = useState(false);
   const [tenants, getTenant] = useFetch(fetchRepairmen);
   const [selectTenant, setSelectTenant] = useState();
+  console.log(tenants);
   const onEditHandle = (record) => {
     setEdit(true);
     setSelectTenant(record);
@@ -171,7 +172,7 @@ const Page = () => {
       ),
     },
   ];
-
+ 
   const filteredDataSource = tenants?.filter((item) => {
     const isTextMatch = Object.keys(item).some(
       (key) =>
