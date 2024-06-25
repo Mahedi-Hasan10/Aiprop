@@ -24,8 +24,8 @@ const BarChart = dynamic(() => import("../../components/admin/barChart.js"), {
 
 const AdminDashboard = () => {
   const [data, getData] = useFetch(fetchWorkers);
-  const [tcalls, getTcalls] = useFetch(fetchTcalls,{timeframe: '1year'});
-  const { user, error, isLoading } = useUser  ();
+  const [tcalls, getTcalls] = useFetch(fetchTcalls, { timeframe: '1year' });
+  const { user, error, isLoading } = useUser();
 
   const columns = [
     {
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
       key: "StartTimestamp",
       render: (text) => text && text.length > 10 ? `${text.substring(0, 10)}...` : text,
     },
-  
+
     {
       title: "Status",
       dataIndex: "Status",
@@ -93,7 +93,7 @@ const AdminDashboard = () => {
         );
       },
     },
-    
+
   ];
 
   const columns2 = [
@@ -113,14 +113,14 @@ const AdminDashboard = () => {
       dataIndex: "CallCount",
       key: "CallCount",
     },
-   
+
   ];
 
   return (
     <div className="relative">
       <div className="flex xl:flex-row flex-col xl:gap-[30px] gap-[10px] w-full relative ">
         <div className=" 2xl:w-[70%] xl:w-[60%] w-full">
-          <div className="px-[10px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full">
+          <div className="px-[10px] pb-[21px] pt-[30px] bg-white rounded-md  h-fit w-full ">
             <h3 className="md:text-[28px] text-xl text-center md:text-start font-semibold text-[#030303] mb-[30px]">
               Active work orders
             </h3>
@@ -132,15 +132,15 @@ const AdminDashboard = () => {
             />
           </div>
 
-          <div className="mt-[30px] flex xl:flex-row flex-col gap-[30px] ">
-            <div className="shadow bg-white px-[30px] pt-[37px] pb-[30px] rounded-[10px] x:w-1/2 w-full  relative ">
-              <div className="flex items-center justify-between w-full ">
-                <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
+          <div className="mt-[30px] flex 2xl:flex-row flex-col gap-[20px]  ">
+            <div className="shadow bg-white px-[30px] pt-[37px] pb-[30px] rounded-[10px] 2xl:w-1/2  w-full  relative ">
+              <div className="flex items-center justify-between w-full gap-2 ">
+                <h3 className="text-[20px] md:text-[28px] font-semibold text-[#030303] whitespace-pre ">
                   Repair call stats
                 </h3>
                 <Select
                   variant="borderless"
-                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] placeholder:!text-[#030303] !text-4xl !w-[150px]"
+                  className="!bg-[#F1EEFF]  !text-[#030303] placeholder:!text-[#030303] text-[500px]  w-[130px] xl:w-[150px]"
                   defaultValue="monthly"
                   options={[
                     {
@@ -178,7 +178,7 @@ const AdminDashboard = () => {
                   ]}
                 />
               </div>
-              <div className="mt-[40px] flex justify-center flex-col">
+              <div className="mt-[40px] flex justify-center flex-col  ">
                 <div className="w-full h-full flex justify-center">
                   <PieChart />
                 </div>
@@ -223,14 +223,14 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-            <div className="shadow bg-white px-[30px] pt-[37px] pb-[30px] rounded-[10px] xl:w-1/2 w-full  relative ">
-              <div className="flex items-center justify-between w-full ">
-                <h3 className="md:text-[28px] text-xl font-semibold text-[#030303] ">
+            <div className="shadow bg-white px-[30px] pt-[37px] pb-[30px]  rounded-[10px] 2xl:w-1/2 w-full  relative ">
+              <div className="flex items-center justify-between w-full gap-2 ">
+                <h3 className="text-[20px] md:text-[28px] font-semibold text-[#030303] whitespace-pre ">
                   Issue breakdown
                 </h3>
                 <Select
                   variant="borderless"
-                  className="!bg-[#F1EEFF] !py-[11px] !px-[15px] !text-[#030303] placeholder:!text-[#030303] !text-4xl !w-[150px]"
+                  className="!bg-[#F1EEFF]  !text-[#030303] placeholder:!text-[#030303] text-[500px]  w-[130px] xl:w-[150px]"
                   defaultValue="monthly"
                   options={[
                     {
@@ -275,7 +275,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="px-[10px] 2xl:w-[30%] xl:w-[40%] pb-[21px] pt-[30px] bg-white rounded-md shadow relative ">
+        <div className="px-[10px] 2xl:w-[40%] xl:w-[40%] pb-[21px] pt-[30px] bg-white rounded-md shadow relative ">
           <div className="flex gap-4 items-center justify-between mb-[30px] relative  ">
             <div className="flex items-center gap-3 ">
               <Image
@@ -332,8 +332,9 @@ const AdminDashboard = () => {
           <Table
             dataSource={tcalls}
             columns={columns2}
-            className="relative"
+            className="relative w-full"
             pagination={false}
+
           />
         </div>
       </div>
